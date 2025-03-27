@@ -1,6 +1,7 @@
+import Profile_photo from "./components/Profile_photo";
 
 export default function Home() {
   return (
-    <h1>Portofolio</h1>
+    <Profile_photo />
   );
 }
