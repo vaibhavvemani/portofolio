@@ -1,4 +1,4 @@
-import Profile_photo from "./components/Profile_photo";
+import Profile_photo from "@/components/Profile_photo";
 
 export default function Home() {
   return (

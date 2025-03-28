@@ -1,66 +1,49 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 
-export default function Profile_photo() {
-
+export default function ProfilePhoto() {
   return (
-    <>
-    <div className="relative h-100 w-120">
+    <div className="relative flex items-center justify-center h-screen">
 
-      <div className="relative overflow-hidden h-100 w-100 rounded-[25rem] bg-gray-500 border-4">
-        <Image
-          src="/mahesh-babu.png"
-          alt="Picture of mahesh babu smoking from okkadu movie"
-          width={100}
-          height={100}
-          layout="responsive"
-        /> 
+      <div className="relative w-[32rem] h-[25rem]">
+
+        <div className="relative w-[23rem] h-[23rem] overflow-hidden rounded-full border-4 border-[#181818] drop-shadow-2xl">
+          <Image
+            className="absolute inset-0 opacity-50"
+            src="/mahesh-babu.png"
+            alt="Mahesh Babu smoking from Okkadu movie"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+
+        <div className="absolute bottom-3 left-22 w-full bg-[#80808050] rounded-2xl text-left px-5">
+          <h1 className="text-white text-5xl leading-tight">
+            Hi, I'm <span className="text-green-400">Vaibhav.</span>
+          </h1>
+          <p className="text-gray-300 text-2xl">
+            Software <span className="text-green-400">Developer</span>
+          </p>
+        </div>
+
+        <div className="absolute top-0 right-37 flex items-center gap-3">
+          <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
+          <Image src="/github.svg" alt="GitHub" width={40} height={40} />
+        </div>
+        <div className="absolute top-20 right-18 flex items-center gap-3">
+          <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
+          <Image src="/linkedin.svg" alt="LinkedIn" width={40} height={40} />
+        </div>
+        <div className="absolute top-40 right-13 flex items-center gap-3">
+          <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
+          <Image src="/gmail.svg" alt="Email" width={40} height={40} />
+        </div>
       </div>
 
-      <div className="absolute top-10 right-16 flex gap-2 font-black">
-          <Image 
-            src="/horizontal-line.svg"
-            alt="Line"
-            width={30}
-            height={50}
-          />
-          <Image 
-            src="/github.svg"
-            alt="Line"
-            width={40}
-            height={40}
-          />
-      </div>
-      <div className="absolute top-30 right-3 flex gap-2  font-black">
-          <Image 
-            src="/horizontal-line.svg"
-            alt="Line"
-            width={30}
-            height={50}
-          />
-          <Image 
-            src="/linkedin.svg"
-            alt="Line"
-            width={40}
-            height={40}
-          />
-      </div>
-      <div className="absolute top-50 right-1 flex gap-2 font-black">
-          <Image 
-            src="/horizontal-line.svg"
-            alt="Line"
-            width={30}
-            height={50}
-          />
-          <Image 
-            src="/gmail.svg"
-            alt="Line"
-            width={40}
-            height={40}
-          />
+      {/* Social Icons */}
+      <div className="absolute right-16 flex flex-col gap-10">
       </div>
     </div>
-    </>
-  )
+  );
 }
