@@ -1,10 +1,9 @@
 "use client";
-
 import Image from "next/image";
 
-export default function ProfilePhoto() {
+export default function Profile_photo() {
   return (
-    <div className="relative flex items-center justify-center h-screen">
+    <div className="relative flex items-center justify-center">
 
       <div className="relative w-[32rem] h-[25rem]">
 
