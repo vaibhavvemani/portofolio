@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Profile_photo() {
   return (
-    <div className="relative w-[32rem] h-[25rem] flex items-center justify-start self-center">
+    <div className="relative w-[32rem] h-[25rem] ">
       <div className="relative w-[32rem] h-[25rem]">
 
         <div className="relative w-[23rem] h-[23rem] overflow-hidden rounded-full border-4 border-[#181818] drop-shadow-2xl">
