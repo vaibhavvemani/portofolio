@@ -3,8 +3,7 @@ import Image from "next/image";
 
 export default function Profile_photo() {
   return (
-    <div className="relative flex items-center justify-center">
-
+    <div className="relative w-[32rem] h-[25rem] flex items-center justify-start self-center">
       <div className="relative w-[32rem] h-[25rem]">
 
         <div className="relative w-[23rem] h-[23rem] overflow-hidden rounded-full border-4 border-[#181818] drop-shadow-2xl">
@@ -28,19 +27,18 @@ export default function Profile_photo() {
 
         <div className="absolute top-0 right-37 flex items-center gap-3">
           <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
-          <Image src="/github.svg" alt="GitHub" width={40} height={40} />
+          <Image src="/github.svg" alt="GitHub" width={50} height={50} />
         </div>
         <div className="absolute top-20 right-18 flex items-center gap-3">
           <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
-          <Image src="/linkedin.svg" alt="LinkedIn" width={40} height={40} />
+          <Image src="/linkedin.svg" alt="LinkedIn" width={50} height={50} />
         </div>
         <div className="absolute top-40 right-13 flex items-center gap-3">
           <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
-          <Image src="/gmail.svg" alt="Email" width={40} height={40} />
+          <Image src="/gmail.svg" alt="Email" width={50} height={50} />
         </div>
       </div>
 
-      {/* Social Icons */}
       <div className="absolute right-16 flex flex-col gap-10">
       </div>
     </div>

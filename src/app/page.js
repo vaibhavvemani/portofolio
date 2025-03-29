@@ -1,11 +1,13 @@
-import Profile_photo from "../components/Profile_photo";
-import Profile_about from "../components/Profile_about";
+import Profile_photo from "@/components/Profile_photo";
+import Controller from "@/components/Controller";
+import { Home_bar } from "@/components/Home_bar";
 
 export default function Home() {
   return (
-    <div className="h-screen w-screen p-10 flex flex-col justify-center items-start gap-15">
+    <div className="w-screen h-screen flex flex-col justify-center items-start gap-15">
       <Profile_photo />
-      <Profile_about />
+      <Controller />
+      <Home_bar />
     </div>
   );
 }
