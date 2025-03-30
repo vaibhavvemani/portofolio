@@ -1,7 +1,29 @@
 "use client";
 import Image from "next/image";
+import React from "react"
+import Typed from "typed.js"
 
 export default function Profile_photo() {
+
+  const typewriter_el = React.useRef(null)
+
+  React.useEffect(() => {
+    const typed = new Typed( typewriter_el.current, {
+      strings: ["Software Developer.", "Backend Developer.", "ML Developer."],
+      typeSpeed: 50,
+      startDelay: 500,
+      backSpeed: 20,
+      backDelay: 2000,
+      loop: true,
+      loopCount: Infinity,
+    });
+
+    return () => {
+      typed.destroy();
+    };
+
+  }, []);
+
   return (
     <div className="relative w-[32rem] h-[25rem] ">
       <div className="relative w-[32rem] h-[25rem]">
@@ -21,7 +43,7 @@ export default function Profile_photo() {
             Hi, I'm <span className="text-green-400">Vaibhav.</span>
           </h1>
           <p className="text-gray-300 text-2xl">
-            Software <span className="text-green-400">Developer</span>
+            <span ref={typewriter_el} className="text-green-400"></span>
           </p>
         </div>
 
