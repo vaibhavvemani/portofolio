@@ -7,9 +7,9 @@ export default function Controller() {
 
       <div className='relative flex justify-center items-center h-80 w-130'>
 
-        <div className='flex justify-center items-center gap-5 h-50 w-100 rounded-2xl bg-black'>
+        <div className='flex justify-center items-center gap-5 h-50 w-100 rounded-2xl bg-[#181818]'>
 
-          <div className='flex justify-center items-center absolute bottom-0 left-0 h-50 w-50 rounded-full bg-black'>
+          <div className='flex justify-center items-center absolute bottom-0 left-0 h-50 w-50 rounded-full bg-[#101010]'>
 
             <Image 
               src="/controller-dpad.svg"
@@ -21,11 +21,11 @@ export default function Controller() {
 
           </div>
 
-          <div className='h-5 w-10 bg-[#181818]'></div>
-          <div className='h-5 w-10 bg-[#181818]'></div>
+          <div className='h-5 w-10 bg-[#323232]'></div>
+          <div className='h-5 w-10 bg-[#323232]'></div>
 
           <div className='flex flex-col justify-center items-center 
-            absolute bottom-0 right-0 h-50 w-50 rounded-full bg-[#181818]'>
+            absolute bottom-0 right-0 h-50 w-50 rounded-full bg-[#101010]'>
 
             <div className='flex justify-center items-center h-8 w-8 rounded-full bg-yellow-500'>
               <p className='font-bold'>Y</p>
