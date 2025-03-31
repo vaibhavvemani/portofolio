@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
-import React from "react"
-import Typed from "typed.js"
+import React from "react";
+import Typed from "typed.js";
+import * as motion from "motion/react-client";
 
 export default function Profile_photo() {
 
@@ -47,15 +48,15 @@ export default function Profile_photo() {
           </p>
         </div>
 
-        <div className="absolute top-0 right-37 flex items-center gap-3">
+        <div className="absolute top-0 right-37 flex items-center gap-1">
           <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
           <Image src="/github.svg" alt="GitHub" width={50} height={50} />
         </div>
-        <div className="absolute top-20 right-18 flex items-center gap-3">
+        <div className="absolute top-20 right-18 flex items-center gap-1">
           <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
           <Image src="/linkedin.svg" alt="LinkedIn" width={50} height={50} />
         </div>
-        <div className="absolute top-40 right-13 flex items-center gap-3">
+        <div className="absolute top-40 right-13 flex items-center gap-1">
           <Image src="/horizontal-line.svg" alt="Line" width={40} height={2} />
           <Image src="/gmail.svg" alt="Email" width={50} height={50} />
         </div>

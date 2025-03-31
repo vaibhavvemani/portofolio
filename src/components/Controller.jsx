@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Controller() {
   return (
-    <div className='fixed top-25 right-0 transform rotate-45 -translate-y-30 translate-x-30'>
+    <div className='fixed top-25 right-0 transform rotate-45 -translate-y-35 translate-x-35'>
 
       <div className='relative flex justify-center items-center h-80 w-130'>
 
