@@ -10,7 +10,7 @@ export default function Profile_photo() {
 
   React.useEffect(() => {
     const typed = new Typed( typewriter_el.current, {
-      strings: ["Software Developer.", "Backend Developer.", "ML Developer."],
+      strings: ["ML Developer.", "Backend Developer.", "Software Developer."],
       typeSpeed: 50,
       startDelay: 500,
       backSpeed: 20,

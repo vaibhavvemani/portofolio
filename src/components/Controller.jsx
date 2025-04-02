@@ -1,9 +1,21 @@
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
+import * as motion from 'motion/react-client';
+
 
 export default function Controller() {
   return (
-    <div className='hidden lg:block fixed top-25 right-0 transform rotate-45 -translate-y-35 translate-x-35'>
+    <motion.div className='hidden md:block fixed top-25 right-0 transform rotate-45 -translate-y-35 translate-x-35'
+      initial={{opacity: 0, scale: 0}}
+      animate={{opacity: 1, scale: 1}}
+      transition={{
+        duration: 0.5,
+        delay: 1.5,
+        type: "spring",
+        bounce: 0.25,
+
+      }}
+    >
 
       <div className='relative flex justify-center items-center h-80 w-130'>
 
@@ -27,7 +39,8 @@ export default function Controller() {
           <div className='flex flex-col justify-center items-center 
             absolute bottom-0 right-0 h-50 w-50 rounded-full bg-[#101010]'>
 
-            <div className='flex justify-center items-center h-8 w-8 rounded-full bg-yellow-500'>
+            <div className='flex justify-center items-center h-8 w-8 rounded-full bg-yellow-500
+              hover:bg-yellow-600 hover:shadow-lg'>
               <p className='font-bold'>Y</p>
             </div>
             <div className='w-full flex justify-evenly items-center'>
@@ -35,11 +48,13 @@ export default function Controller() {
                 hover:bg-blue-600 hover:shadow-lg'>
                 <p className='font-bold'>X</p>
               </div>
-              <div className='flex justify-center items-center h-8 w-8 rounded-full bg-red-500'>
+              <div className='flex justify-center items-center h-8 w-8 rounded-full bg-red-500
+                hover:bg-red-600 hover:shadow-lg'>
                 <p className='font-bold'>B</p>
               </div>
             </div>
-            <div className='flex justify-center items-center h-8 w-8 rounded-full bg-green-500'>
+            <div className='flex justify-center items-center h-8 w-8 rounded-full bg-green-500
+              hover:bg-green-600 hover:shadow-lg'>
               <p className='font-bold'>A</p>
             </div>
 
@@ -49,7 +64,7 @@ export default function Controller() {
 
       </div>
 
-    </div>
+    </motion.div>
   )
 }
 

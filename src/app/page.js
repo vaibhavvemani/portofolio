@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="relative flex flex-col justify-center items-center gap-5">
 
-      <div className="relative w-[100vw] h-[80vh] flex flex-col justify-center items-center ">
+      <div className="relative w-[100vw] h-[85vh] flex flex-col justify-center items-center ">
 
         <div className="hidden lg:block">
           <motion.div className="absolute top-8 left-8"
