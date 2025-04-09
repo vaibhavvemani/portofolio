@@ -24,7 +24,7 @@ export default function Profile_about() {
 
   }, []);
   return (
-    <div className="flex flex-col gap-5">
+    <div className="h-[25rem] flex flex-col gap-5 justify-center items-start">
       <motion.div className="w-full rounded-2xl text-left "
         initial={{ clipPath: "inset(0% 100% 0% 0%)" }}
         animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
@@ -35,11 +35,11 @@ export default function Profile_about() {
 
         }}
       >
-        <h1 className="text-white text-5xl leading-tight">
-          Hi, I'm <span className="text-green-400">Vaibhav.</span>
+        <h1 className="text-white text-5xl font-black leading-tight">
+          Hi, I'm <span className="text-[#16E34D]">Vaibhav.</span>
         </h1>
         <p className="text-gray-300 text-2xl">
-          <span ref={typewriter_el} className="text-green-400"></span>
+          <span ref={typewriter_el} className="text-[#16E34D]"></span>
         </p>
       </motion.div>
       <motion.div
