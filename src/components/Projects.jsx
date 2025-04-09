@@ -1,10 +1,10 @@
 export default function Projects() {
   return (
-    <div className="relative w-320 p-10 rounded-2xl text-white bg-[#181818]">
-      <h1 className="m-5 text-7xl font-bold">Projects</h1>
+    <div className="relative w-320 p-10 flex flex-col gap-5 rounded-2xl text-white ">
+      <h1 className="text-7xl font-bold">Projects</h1>
 
-      <div className="flex flex-wrap gap-10 justify-evenly items-center">
-        <div className="w-80 h-80 p-4 bg-[#101010] rounded-2xl">
+      <div className="flex flex-wrap gap-5 justify-between items-start">
+        <div className="w-100 h-80 p-4 bg-[#101010] rounded-2xl">
           <h1 className="font-bold text-4xl">Word Lens</h1>
           <h2 className="text-lg">Assistive Reading Tool</h2>
           <hr className="w-20 self-center"/>
@@ -21,7 +21,7 @@ export default function Projects() {
           {/*   <div className="p-3 bg-black rounded-full">YOLO</div> */}
           {/* </div> */}
         </div>
-        <div className="w-80 h-80 p-4 bg-[#101010] rounded-2xl">
+        <div className="w-100 h-80 p-4 bg-[#101010] rounded-2xl">
           <h1 className="font-bold text-4xl">Bee Safe</h1>
           <h2 className="text-lg">Bee Threat Detection</h2>
           <hr className="w-20 self-center"/>
@@ -38,7 +38,7 @@ export default function Projects() {
           {/*   <div className="p-3 bg-black rounded-full">Segmentation</div> */}
           {/* </div> */}
         </div>
-        <div className="w-80 h-80 p-4 bg-[#101010] rounded-2xl">
+        <div className="w-90 h-80 p-4 bg-[#101010] rounded-2xl">
           <h1 className="font-bold text-4xl">Grounded</h1>
           <h2 className="text-lg">Automated Test Case Generation</h2>
           <hr className="w-20 self-center"/>
