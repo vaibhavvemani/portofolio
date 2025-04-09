@@ -1,14 +1,15 @@
 import Profile_photo from "@/components/Profile_photo";
 import Profile_about from "@/components/Profile_about";
 import Controller from "@/components/Controller";
+import About_me from "@/components/About_me";
 import * as motion from "motion/react-client";
 
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col justify-center items-center gap-5">
+    <div className="w-full relative flex flex-col justify-center items-center ">
 
-      <div className="relative w-[100vw] h-[85vh] flex flex-col justify-center items-center ">
+      <div className="relative w-[90vw] h-[90vh] flex flex-col justify-center items-center border-b-2 border-black">
 
         <div className="hidden lg:block">
           <motion.div className="absolute top-8 left-8"
@@ -41,9 +42,7 @@ export default function Home() {
 
       </div>
 
-
-      <div className="w-[100vw] h-[100vh] bg-black"></div>
-
+      <About_me />
 
     </div>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import * as motion from "motion/react-client";
 
 export default function Profile_about() {
@@ -9,14 +9,14 @@ export default function Profile_about() {
       transition={{
         duration: 0.5,
         delay: 0.6,
-        ease: "easeIn"
+        ease: "easeIn",
       }}
       className="w-200 overflow-hidden bg-[#181818] p-4 rounded-md"
     >
-      <p className='text-center text-white'>
+      <p className="text-center text-white">
         I'm a software engineer based in Bangalore, India. I build things
-        (refuse to design) from web apps to machine learning agents
-        and anything in between.
+        (refuse to design) from web apps to machine learning agents and anything
+        in between.
       </p>
     </motion.div>
   );
