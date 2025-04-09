@@ -2,6 +2,7 @@ import Profile_photo from "@/components/Profile_photo";
 import Profile_about from "@/components/Profile_about";
 import Controller from "@/components/Controller";
 import About_me from "@/components/About_me";
+import Projects from "@/components/Projects";
 import * as motion from "motion/react-client";
 
 
@@ -43,6 +44,7 @@ export default function Home() {
       </div>
 
       <About_me />
+      <Projects />
 
     </div>
   );

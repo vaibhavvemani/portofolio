@@ -40,8 +40,8 @@ export default function Profile_photo() {
           }}
         >
           <Image
-            className="absolute inset-0 opacity-50"
-            src="/mahesh-babu.png"
+            className="absolute inset-0 opacity-80 "
+            src="/vaibhav4.jpg"
             alt="Mahesh Babu smoking from Okkadu movie"
             layout="fill"
             objectFit="cover"
