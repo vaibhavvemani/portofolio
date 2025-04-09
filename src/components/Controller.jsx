@@ -5,7 +5,7 @@ import * as motion from 'motion/react-client';
 
 export default function Controller() {
   return (
-    <motion.div className='hidden md:block fixed top-5 right-0 -rotate-25'
+    <motion.div className='hidden md:block fixed top-5 right-60 -rotate-25'
       initial={{opacity: 0, scale: 0}}
       animate={{opacity: 1, scale: 1}}
       transition={{
