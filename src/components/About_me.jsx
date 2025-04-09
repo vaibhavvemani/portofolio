@@ -1,46 +1,12 @@
 import React from "react";
-import { IconCloud } from "@/components/magicui/icon-cloud";
-
-const slugs = [
-  "typescript",
-  "javascript",
-  "dart",
-  "java",
-  "react",
-  "flutter",
-  "android",
-  "html5",
-  "css3",
-  "nodedotjs",
-  "express",
-  "nextdotjs",
-  "prisma",
-  "amazonaws",
-  "postgresql",
-  "firebase",
-  "nginx",
-  "vercel",
-  "testinglibrary",
-  "jest",
-  "cypress",
-  "docker",
-  "git",
-  "jira",
-  "github",
-  "gitlab",
-  "visualstudiocode",
-  "androidstudio",
-  "sonarqube",
-  "figma",
-];
 
 export default function About_me() {
-  const images = slugs.map(
-    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
-  );
   return (
-    <div className="relative w-320 h-100 border-3 border-black m-10 bg-[#181818] flex justify-center items-center rounded-2xl text-white">
-      <div className="w-2/3 h-2/3 p-10 flex flex-col justify-center items-start border-r-4 border-green-500">
+    <div
+      className="relative w-320 h-100 m-10 flex justify-center 
+      items-center rounded-2xl text-white"
+    >
+      <div className="w-2/3 h-2/3 p-10 flex flex-col justify-center items-start gap-5 border-r-4 border-green-500">
         <h1 className="text-7xl font-bold">About me</h1>
         <p>
           Hellooo! I’m Vaibhav Vemani, a developer from Bengaluru, India with an
@@ -67,7 +33,9 @@ export default function About_me() {
 
           <div>
             <div className="w-full rounded-xl shadow-md">
-              <h1 className="text-sm font-light text-gray-400">CURRENTLY LEVELING UP: </h1>
+              <h1 className="text-sm font-light text-gray-400">
+                CURRENTLY LEVELING UP:{" "}
+              </h1>
               <h3 className="text-white text-lg font-semibold mb-2">
                 LangChain
               </h3>
@@ -87,7 +55,9 @@ export default function About_me() {
 
           <div>
             <h2 className="text-sm font-light text-gray-400 ">NOW PLAYING:</h2>
-            <h1 className="text-lg font-semibold">Elden Ring - Losing to the same boss for 3 hours</h1>
+            <h1 className="text-lg font-semibold">
+              Elden Ring - Losing to the same boss for 3 hours
+            </h1>
           </div>
         </div>
       </div>
