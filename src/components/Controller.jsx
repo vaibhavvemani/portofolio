@@ -1,25 +1,27 @@
 import React from 'react';
 import Image from 'next/image';
 import * as motion from 'motion/react-client';
-
+import { useSpring } from 'motion/react';
 
 export default function Controller() {
+
   return (
-    <motion.div className='hidden md:block fixed top-5 right-60 -rotate-25'
-      initial={{opacity: 0, scale: 0}}
-      animate={{opacity: 1, scale: 1}}
+    // <motion.div className='hidden md:block absolute top-5 right-60 -rotate-20'
+    <motion.div className='hidden md:block fixed top-5 right-0 translate-30 -translate-y-7 rotate-45'
+      initial={{x: -200, y: -400}}
+      animate={{x: 0, y: 0}}
       transition={{
-        duration: 0.5,
+        duration: 1,
         delay: 1.5,
         type: "spring",
-        bounce: 0.25,
+        bounce: 0.60,
 
       }}
     >
 
       <div className='relative flex justify-center items-center h-60 w-110'>
 
-        <div className='flex justify-center items-center gap-5 h-40 w-80 rounded-2xl bg-[#181818]'>
+        <div className='flex justify-center items-center gap-5 h-40 w-80 rounded-2xl bg-black'>
 
           <div className='flex justify-center items-center absolute bottom-0 left-0 h-40 w-40 rounded-full bg-[#101010]'>
 

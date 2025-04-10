@@ -3,7 +3,7 @@ import React from "react";
 export default function About_me() {
   return (
     <div
-      className="relative w-320 h-100 m-10 flex justify-center 
+      className="relative w-320 h-140 mt-20 flex justify-center 
       items-center rounded-2xl text-white"
     >
       <div className="w-2/3 h-2/3 p-10 flex flex-col justify-center items-start gap-5 border-r-4 border-green-500">
@@ -21,11 +21,8 @@ export default function About_me() {
       </div>
 
       <div className="w-1/3 flex justify-center items-center">
-        {/* <div className="relative flex size-full items-center justify-center overflow-hidden"> */}
-        {/*   <IconCloud images={images} /> */}
-        {/* </div> */}
 
-        <div className="w-80 h-80 p-4 flex flex-col gap-5 bg-[#101010] rounded-xl">
+        <div className="w-80 h-80 p-4 flex flex-col gap-5 bg-card rounded-xl">
           <div>
             <h1 className="font-bold text-3xl">VAIBHAV #0044</h1>
             <p className="font-light text-sm">Trying to be a decent dev</p>

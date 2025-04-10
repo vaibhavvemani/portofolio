@@ -5,7 +5,7 @@ import * as motion from "motion/react-client";
 export default function Profile_photo() {
 
   return (
-    <div className="relative w-[25rem] h-[25rem]">
+    <div className="relative w-[23rem] h-[23rem]">
 
       <motion.div className="relative w-[23rem] h-[23rem] 
         overflow-hidden rounded-full border-1 border-[#00F9EC] shadow-[0_0_40px_20px] shadow-[#045138]"

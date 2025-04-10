@@ -4,13 +4,16 @@ import Image from "next/image";
 import Typed from "typed.js";
 import * as motion from "motion/react-client";
 
-export default function Profile_about() {
-  const typewriter_el = React.useRef(null)
+import { useEffect, useRef } from "react";
 
-  React.useEffect(() => {
+export default function Profile_about() {
+  const svg_size = 30;
+  const typewriter_el = useRef(null);
+
+  useEffect(() => {
     const typed = new Typed(typewriter_el.current, {
       strings: ["ML Developer.", "Backend Developer.", "Software Developer."],
-      typeSpeed: 50,
+      typeSpeed: 25,
       startDelay: 500,
       backSpeed: 20,
       backDelay: 2000,
@@ -21,25 +24,27 @@ export default function Profile_about() {
     return () => {
       typed.destroy();
     };
-
   }, []);
   return (
-    <div className="h-[25rem] flex flex-col gap-5 justify-center items-start">
-      <motion.div className="w-full rounded-2xl text-left "
+    <div className="h-[23rem] flex flex-col gap-5 justify-center items-start">
+      <motion.div
+        className="rounded-2xl text-left "
         initial={{ clipPath: "inset(0% 100% 0% 0%)" }}
         animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
         transition={{
           duration: 0.3,
           delay: 0.8,
           ease: "easeIn",
-
         }}
       >
         <h1 className="text-white text-5xl font-black leading-tight">
-          Hi, I'm <span className="text-[#16E34D]">Vaibhav.</span>
+          Hi, I'm{" "}
+          <span className="text-accent text-shadow-accent text-shadow-[5px_5px_10px] font-outline-1">
+            Vaibhav.
+          </span>
         </h1>
         <p className="text-gray-300 text-2xl">
-          <span ref={typewriter_el} className="text-[#16E34D]"></span>
+          <span ref={typewriter_el} className="text-accent"></span>
         </p>
       </motion.div>
       <motion.div
@@ -50,18 +55,33 @@ export default function Profile_about() {
           delay: 0.6,
           ease: "easeIn",
         }}
-        className="w-200 overflow-hidden rounded-md"
+        className="overflow-hidden rounded-md"
       >
         <p className="text-white">
           I'm a software engineer based in Bangalore, India. I build things
-          (refuse to design) from web apps to machine learning agents and anything
-          in between.
+          (refuse to design) from web apps to machine learning agents and
+          anything in between.
         </p>
       </motion.div>
       <div className="flex justify-start items-center gap-5">
-          <Image src="/github.svg" alt="GitHub" width={40} height={40} />
-          <Image src="/linkedin.svg" alt="LinkedIn" width={40} height={40} />
-          <Image src="/gmail.svg" alt="Email" width={40} height={40} />
+        <Image
+          src="/github.svg"
+          alt="GitHub"
+          width={svg_size}
+          height={svg_size}
+        />
+        <Image
+          src="/linkedin.svg"
+          alt="LinkedIn"
+          width={svg_size}
+          height={svg_size}
+        />
+        <Image
+          src="/gmail.svg"
+          alt="Email"
+          width={svg_size}
+          height={svg_size}
+        />
       </div>
     </div>
   );
