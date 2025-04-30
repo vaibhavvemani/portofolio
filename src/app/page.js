@@ -1,3 +1,4 @@
+"use client"
 import Profile_photo from "@/components/Profile_photo";
 import Profile_about from "@/components/Profile_about";
 import Controller from "@/components/Controller";
@@ -11,7 +12,10 @@ export default function Home() {
       <div className="absolute top-0 left-0 h-full shadow-[0px_0px_250px_700px] shadow-[#05653020]"></div>
       <Controller />
 
-      <div className="relative w-320 h-[70vh] flex justify-center items-end gap-20">
+      <div 
+        className="relative w-320 h-[100vh] flex justify-center items-center gap-20"
+        id="home"
+      >
 
         <Profile_photo />
         <Profile_about />

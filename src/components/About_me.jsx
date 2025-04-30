@@ -1,12 +1,23 @@
 import React from "react";
+import * as motion from "motion/react-client";
 
 export default function About_me() {
   return (
     <div
-      className="relative w-320 h-140 mt-20 flex justify-center 
-      items-center rounded-2xl text-white"
+      className="relative w-320 h-140 flex justify-center 
+      items-center rounded-2xl text-white overflow-hidden"
     >
-      <div className="w-2/3 h-2/3 p-10 flex flex-col justify-center items-start gap-5 border-r-4 border-green-500">
+      <motion.div
+        className="w-2/3 h-2/3 p-10 flex flex-col justify-center items-start gap-5 border-r-4 border-green-500"
+        initial={{ x: -200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ammount: 1}}
+        transition={{
+          duration: 0.5,
+          ease: "easeIn",
+          delay: 0.2,
+        }}
+      >
         <h1 className="text-7xl font-bold">About me</h1>
         <p>
           Hellooo! I’m Vaibhav Vemani, a developer from Bengaluru, India with an
@@ -18,10 +29,19 @@ export default function About_me() {
           another dev—I’m here to be the kind of dev who can’t be replaced by an
           LLM. (Sorry, GPT 👀)
         </p>
-      </div>
+      </motion.div>
 
-      <div className="w-1/3 flex justify-center items-center">
-
+      <motion.div 
+        className="w-1/3 flex justify-center items-center"
+        initial={{ x: 200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ammount: 0.8}}
+        transition={{
+          delay: 0.2,
+          duration: 0.5,
+          ease: "easeIn"
+        }}
+      >
         <div className="w-80 h-80 p-4 flex flex-col gap-5 bg-card rounded-xl">
           <div>
             <h1 className="font-bold text-3xl">VAIBHAV #0044</h1>
@@ -57,7 +77,7 @@ export default function About_me() {
             </h1>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Image from 'next/image';
 import * as motion from 'motion/react-client';
@@ -21,7 +22,7 @@ export default function Controller() {
 
       <div className='relative flex justify-center items-center h-60 w-110'>
 
-        <div className='flex justify-center items-center gap-5 h-40 w-80 rounded-2xl bg-black'>
+        <div className='flex justify-center items-start gap-5 h-40 w-80 rounded-2xl bg-black'>
 
           <div className='flex justify-center items-center absolute bottom-0 left-0 h-40 w-40 rounded-full bg-[#101010]'>
 
@@ -35,8 +36,7 @@ export default function Controller() {
 
           </div>
 
-          <div className='h-5 w-10 bg-[#323232]'></div>
-          <div className='h-5 w-10 bg-[#323232]'></div>
+          <div className='mt-2 p-2 rounded-full border-1 border-accent text-accent bg-[#181818]'>Resume</div>
 
           <div className='flex flex-col justify-center items-center 
             absolute bottom-0 right-0 h-40 w-40 rounded-full bg-[#101010]'>
@@ -46,12 +46,28 @@ export default function Controller() {
               <p className='font-bold'>Y</p>
             </div>
             <div className='w-full flex justify-evenly items-center'>
-              <div className='flex justify-center items-center h-6 w-6 rounded-full bg-blue-500
-                hover:bg-blue-600 hover:shadow-lg'>
+              <div
+                className='flex justify-center items-center h-6 w-6 rounded-full bg-blue-500
+                hover:bg-blue-600 hover:shadow-lg'
+                onClick={() => {
+                  const section = document.getElementById("Projects")
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" })
+                  }
+                }}
+              >
                 <p className='font-bold'>X</p>
               </div>
-              <div className='flex justify-center items-center h-6 w-6 rounded-full bg-red-500
-                hover:bg-red-600 hover:shadow-lg'>
+              <div 
+                className='flex justify-center items-center h-6 w-6 rounded-full bg-red-500
+                hover:bg-red-600 hover:shadow-lg'
+                onClick={() => {
+                  const section = document.getElementById("home")
+                  if (section) {
+                    section.scrollIntoView({ behavior: "smooth" })
+                  }
+                }}
+              >
                 <p className='font-bold'>B</p>
               </div>
             </div>
