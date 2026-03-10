@@ -118,10 +118,10 @@ function ProjectOverlay({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top accent bar */}
-        <div
+        {/* <div
           className="h-1 w-full rounded-t-2xl"
           style={{ background: project.accentColor }}
-        />
+        /> */}
 
         {/* Scanline overlay */}
         <div className="absolute inset-0 scanline pointer-events-none rounded-2xl" />

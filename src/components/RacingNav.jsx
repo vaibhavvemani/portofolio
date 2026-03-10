@@ -95,16 +95,16 @@ export default function RacingNav() {
                 {/* Dot */}
                 <div
                   className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${isActive
-                      ? "bg-accent border-accent shadow-[0_0_8px_rgba(0,255,102,0.6)]"
-                      : "bg-transparent border-muted group-hover:border-accent/50"
+                    ? "bg-accent border-accent shadow-[0_0_8px_rgba(0,255,102,0.6)]"
+                    : "bg-transparent border-muted group-hover:border-accent/50"
                     }`}
                 />
 
                 {/* Label tooltip */}
                 <span
                   className={`text-[0.5rem] tracking-wider transition-colors duration-300 ${isActive
-                      ? "text-accent font-bold"
-                      : "text-muted group-hover:text-white"
+                    ? "text-accent font-bold"
+                    : "text-muted group-hover:text-white"
                     }`}
                 >
                   {section.label}
@@ -167,8 +167,8 @@ export default function RacingNav() {
               >
                 <div
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${isActive
-                      ? "bg-accent shadow-[0_0_6px_rgba(0,255,102,0.6)]"
-                      : "bg-muted"
+                    ? "bg-accent shadow-[0_0_6px_rgba(0,255,102,0.6)]"
+                    : "bg-muted"
                     }`}
                 />
                 <span

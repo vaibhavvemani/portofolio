@@ -86,7 +86,7 @@ export default function Interests() {
                         whileHover={{ y: -4 }}
                     >
                         {/* Accent bg glow */}
-                        <div className={`absolute inset-0 ${interest.bgAccent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl`} />
+                        {/* <div className={`absolute inset-0 ${interest.bgAccent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl`} /> */}
 
                         {/* Content */}
                         <div className="relative z-10">
@@ -110,7 +110,7 @@ export default function Interests() {
                         </div>
 
                         {/* Bottom accent bar */}
-                        <div className={`absolute bottom-0 left-0 right-0 h-[2px] ${interest.accent.replace('border-', 'bg-')} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                        {/* <div className={`absolute bottom-0 left-0 right-0 h-[2px] ${interest.accent.replace('border-', 'bg-')} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} /> */}
                     </motion.div>
                 ))}
             </div>
