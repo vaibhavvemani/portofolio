@@ -1,31 +1,51 @@
-"use client"
+"use client";
 import Profile_photo from "@/components/Profile_photo";
 import Profile_about from "@/components/Profile_about";
-import Controller from "@/components/Controller";
+import RacingNav from "@/components/RacingNav";
 import About_me from "@/components/About_me";
+import Achievements from "@/components/Achievements";
 import Projects from "@/components/Projects";
+import Interests from "@/components/Interests";
 import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <div className="bg-background w-full relative flex flex-col justify-center items-center ">
-      <div className="absolute top-0 left-0 h-full shadow-[0px_0px_250px_700px] shadow-[#05653020]"></div>
-      <Controller />
+    <div className="bg-background w-full relative min-h-screen">
+      {/* Background grid */}
+      <div className="fixed inset-0 grid-bg pointer-events-none z-0" />
 
-      <div 
-        className="relative w-320 h-[100vh] flex justify-center items-center gap-20"
-        id="home"
-      >
+      {/* Navigation */}
+      <RacingNav />
 
-        <Profile_photo />
-        <Profile_about />
+      {/* Main content - offset for sidebar on desktop */}
+      <main className="relative z-10 lg:ml-20">
+        {/* Home Section */}
+        <section
+          className="section-container min-h-screen flex flex-col lg:flex-row justify-center items-center gap-16"
+          id="home"
+        >
+          <Profile_photo />
+          <Profile_about />
+        </section>
 
-      </div>
+        {/* About Section */}
+        <About_me />
 
-      <About_me />
-      <Projects />
-      <Contact />
+        {/* Achievements Section */}
+        <Achievements />
 
+        {/* Projects / Garage Section */}
+        <Projects />
+
+        {/* Interests / Pit Lane Section */}
+        <Interests />
+
+        {/* Contact / Pit Stop Section */}
+        <Contact />
+      </main>
+
+      {/* Mobile bottom padding for nav bar */}
+      <div className="lg:hidden h-20" />
     </div>
   );
 }

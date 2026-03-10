@@ -2,82 +2,149 @@ import React from "react";
 import * as motion from "motion/react-client";
 
 export default function About_me() {
+  const racingStats = [
+    { label: "PROJECTS SHIPPED", value: "12+", color: "text-accent" },
+    { label: "HACKATHONS", value: "5", color: "text-accent-yellow" },
+    { label: "COFFEES / DAY", value: "∞", color: "text-accent-red" },
+    { label: "CURRENT SEASON", value: "2025", color: "text-accent-blue" },
+  ];
+
   return (
-    <div
-      className="relative w-320 h-140 flex justify-center 
-      items-center rounded-2xl text-white overflow-hidden"
+    <section
+      className="section-container min-h-screen flex flex-col justify-center"
+      id="about"
     >
+      {/* Section Header */}
       <motion.div
-        className="w-2/3 h-2/3 p-10 flex flex-col justify-center items-start gap-5 border-r-4 border-green-500"
-        initial={{ x: -200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ammount: 1}}
-        transition={{
-          duration: 0.5,
-          ease: "easeIn",
-          delay: 0.2,
-        }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5 }}
+        className="mb-12"
       >
-        <h1 className="text-7xl font-bold">About me</h1>
-        <p>
-          Hellooo! I’m Vaibhav Vemani, a developer from Bengaluru, India with an
-          obession for building cool stuff. I’m currently studying Artificial
-          Intelligence and Machine Learning, and when I’m not decoding neural
-          nets or debugging web apps at 2 AM, I’m probably learning something
-          new—because curiosity is kinda my thing. If I don’t know how something
-          works, I have to figure it out. Why? Because I’m not here to be just
-          another dev—I’m here to be the kind of dev who can’t be replaced by an
-          LLM. (Sorry, GPT 👀)
-        </p>
+        <span className="section-label">// 02</span>
+        <h2 className="section-title">About Me</h2>
+        <div className="w-20 h-[2px] bg-gradient-to-r from-accent to-transparent mt-2" />
       </motion.div>
 
-      <motion.div 
-        className="w-1/3 flex justify-center items-center"
-        initial={{ x: 200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ammount: 0.8}}
-        transition={{
-          delay: 0.2,
-          duration: 0.5,
-          ease: "easeIn"
-        }}
-      >
-        <div className="w-80 h-80 p-4 flex flex-col gap-5 bg-card rounded-xl">
-          <div>
-            <h1 className="font-bold text-3xl">VAIBHAV #0044</h1>
-            <p className="font-light text-sm">Trying to be a decent dev</p>
-          </div>
+      <div className="flex flex-col lg:flex-row gap-10 items-start">
+        {/* Bio Text */}
+        <motion.div
+          className="lg:w-3/5 flex flex-col gap-6"
+          initial={{ x: -50, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <p className="text-gray-300 leading-relaxed text-base">
+            Hellooo! I&apos;m Vaibhav Vemani, a developer from Bengaluru, India
+            with an obsession for building cool stuff. I&apos;m currently
+            studying Artificial Intelligence and Machine Learning, and when
+            I&apos;m not decoding neural nets or debugging web apps at 2 AM,
+            I&apos;m probably learning something new—because curiosity is kinda
+            my thing.
+          </p>
+          <p className="text-gray-400 leading-relaxed text-base">
+            If I don&apos;t know how something works, I have to figure it out.
+            Why? Because I&apos;m not here to be just another dev—I&apos;m here
+            to be the kind of dev who can&apos;t be replaced by an LLM.
+            (Sorry, GPT 👀)
+          </p>
 
-          <div>
-            <div className="w-full rounded-xl shadow-md">
-              <h1 className="text-sm font-light text-gray-400">
-                CURRENTLY LEVELING UP:{" "}
+          {/* Racing Stats Bar */}
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 p-4 rounded-xl bg-card border border-border-subtle"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            {racingStats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                className="flex flex-col items-center gap-1 text-center"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + i * 0.1 }}
+              >
+                <span className={`font-orbitron text-2xl font-bold ${stat.color}`}>
+                  {stat.value}
+                </span>
+                <span className="text-[0.6rem] text-muted tracking-widest">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Gamer Status Card */}
+        <motion.div
+          className="lg:w-2/5 w-full"
+          initial={{ x: 50, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+        >
+          <div className="p-5 flex flex-col gap-5 bg-card rounded-xl border border-border-subtle glow-green relative overflow-hidden">
+            {/* Scanline overlay */}
+            <div className="absolute inset-0 scanline pointer-events-none" />
+
+            {/* Header */}
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                <span className="text-[0.65rem] text-accent tracking-widest font-orbitron">
+                  ONLINE
+                </span>
+              </div>
+              <h1 className="font-orbitron font-bold text-2xl text-white">
+                VAIBHAV <span className="text-muted">#0044</span>
               </h1>
-              <h3 className="text-white text-lg font-semibold mb-2">
+              <p className="font-light text-sm text-gray-500">
+                Trying to be a decent dev
+              </p>
+            </div>
+
+            {/* Currently Leveling Up */}
+            <div className="rounded-lg p-3 bg-surface">
+              <h3 className="text-[0.65rem] text-muted tracking-widest mb-2">
+                CURRENTLY LEVELING UP
+              </h3>
+              <h3 className="text-white text-lg font-semibold mb-3">
                 LangChain
               </h3>
-
-              <div className="relative w-full h-3 bg-[#181818] rounded-full overflow-hidden">
-                <div
-                  className="bg-green-500 h-full rounded-full transition-all duration-300"
-                  style={{ width: "20%" }}
-                ></div>
+              <div className="relative w-full h-2 bg-[#1a1a1a] rounded-full overflow-hidden">
+                <motion.div
+                  className="bg-accent h-full rounded-full"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "20%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                />
               </div>
-
-              <div className="text-left text-sm text-gray-400 mt-1">
-                200 / 1000 XP
+              <div className="flex justify-between mt-1">
+                <span className="text-[0.65rem] text-muted">200 / 1000 XP</span>
+                <span className="text-[0.65rem] text-accent">LVL 2</span>
               </div>
             </div>
-          </div>
 
-          <div>
-            <h2 className="text-sm font-light text-gray-400 ">NOW PLAYING:</h2>
-            <h1 className="text-lg font-semibold">
-              Elden Ring - Losing to the same boss for 3 hours
-            </h1>
+            {/* Now Playing */}
+            <div className="rounded-lg p-3 bg-surface">
+              <h3 className="text-[0.65rem] text-muted tracking-widest mb-1">
+                NOW PLAYING
+              </h3>
+              <h1 className="text-base font-semibold text-white">
+                Elden Ring
+              </h1>
+              <p className="text-sm text-gray-500 mt-1">
+                Losing to the same boss for 3 hours
+              </p>
+            </div>
           </div>
-        </div>
-      </motion.div>
-    </div>
+        </motion.div>
+      </div>
+    </section>
   );
 }
