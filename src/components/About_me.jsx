@@ -2,11 +2,12 @@ import React from "react";
 import * as motion from "motion/react-client";
 
 export default function About_me() {
+  const currentYear = new Date().getFullYear();
   const racingStats = [
     { label: "PROJECTS SHIPPED", value: "12+", color: "text-accent" },
     { label: "HACKATHONS", value: "5", color: "text-accent-yellow" },
     { label: "COFFEES / DAY", value: "∞", color: "text-accent-red" },
-    { label: "CURRENT SEASON", value: "2025", color: "text-accent-blue" },
+    { label: "CURRENT SEASON", value: currentYear, color: "text-accent-blue" },
   ];
 
   return (
@@ -100,7 +101,7 @@ export default function About_me() {
                 </span>
               </div>
               <h1 className="font-orbitron font-bold text-2xl text-white">
-                VAIBHAV <span className="text-muted">#0044</span>
+                VAIBHAV <span className="text-muted">#44</span>
               </h1>
               <p className="font-light text-sm text-gray-500">
                 Trying to be a decent dev
