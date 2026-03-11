@@ -46,7 +46,7 @@ export default function RacingNav() {
     <>
       {/* Desktop Sidebar */}
       <motion.nav
-        className="hidden lg:flex fixed left-0 top-0 h-screen w-20 flex-col items-center justify-between py-8 z-50 border-r border-border-subtle bg-[#0a0a0a]/90 backdrop-blur-md"
+        className="hidden lg:flex fixed left-0 top-0 h-screen w-20 flex-col items-center justify-between py-8 z-50 border-r border-border-subtle bg-[var(--color-nav-bg)] backdrop-blur-md"
         initial={{ x: -80, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
@@ -104,7 +104,7 @@ export default function RacingNav() {
                 <span
                   className={`text-[0.5rem] tracking-wider transition-colors duration-300 ${isActive
                     ? "text-accent font-bold"
-                    : "text-muted group-hover:text-white"
+                    : "text-muted group-hover:text-[var(--color-text-primary)]"
                     }`}
                 >
                   {section.label}
@@ -151,7 +151,7 @@ export default function RacingNav() {
 
       {/* Mobile Bottom Bar */}
       <motion.nav
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-t border-border-subtle"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--color-nav-bg)] backdrop-blur-md border-t border-border-subtle"
         initial={{ y: 80 }}
         animate={{ y: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}

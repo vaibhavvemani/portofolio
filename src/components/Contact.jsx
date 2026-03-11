@@ -44,7 +44,7 @@ export default function Contact() {
                 COMMS ONLINE
               </span>
             </div>
-            <p className="text-gray-400 leading-relaxed mb-6">
+            <p className="text-[var(--color-text-tertiary)] leading-relaxed mb-6">
               Got a project idea? Want to collaborate? Or just want to talk about
               F1 strategies and Elden Ring boss fights? My pit radio is always open.
             </p>
@@ -54,19 +54,19 @@ export default function Contact() {
                 <span className="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-accent">
                   📧
                 </span>
-                <span className="text-gray-400">vaibhavvemani@gmail.com</span>
+                <span className="text-[var(--color-text-tertiary)]">vaibhavvemani@gmail.com</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <span className="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-accent">
                   📍
                 </span>
-                <span className="text-gray-400">Bangalore, India</span>
+                <span className="text-[var(--color-text-tertiary)]">Bangalore, India</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <span className="w-8 h-8 rounded-lg bg-surface flex items-center justify-center text-accent">
                   ⏱️
                 </span>
-                <span className="text-gray-400">IST (UTC +5:30)</span>
+                <span className="text-[var(--color-text-tertiary)]">IST (UTC +5:30)</span>
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your name"
-                  className="w-full h-11 px-3 rounded-lg bg-surface border border-border-subtle text-white text-sm placeholder:text-gray-600 focus:border-accent/50 focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,102,0.1)] transition-all duration-300"
+                  className="w-full h-11 px-3 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-primary)] text-sm placeholder:text-[var(--color-text-placeholder)] focus:border-accent/50 focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,102,0.1)] transition-all duration-300"
                 />
               </div>
 
@@ -110,7 +110,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="your@email.com"
-                  className="w-full h-11 px-3 rounded-lg bg-surface border border-border-subtle text-white text-sm placeholder:text-gray-600 focus:border-accent/50 focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,102,0.1)] transition-all duration-300"
+                  className="w-full h-11 px-3 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-primary)] text-sm placeholder:text-[var(--color-text-placeholder)] focus:border-accent/50 focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,102,0.1)] transition-all duration-300"
                 />
               </div>
 
@@ -125,7 +125,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="What's on your mind?"
                   rows={4}
-                  className="w-full px-3 py-3 rounded-lg bg-surface border border-border-subtle text-white text-sm placeholder:text-gray-600 focus:border-accent/50 focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,102,0.1)] transition-all duration-300 resize-none"
+                  className="w-full px-3 py-3 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-primary)] text-sm placeholder:text-[var(--color-text-placeholder)] focus:border-accent/50 focus:outline-none focus:shadow-[0_0_10px_rgba(0,255,102,0.1)] transition-all duration-300 resize-none"
                 />
               </div>
 
@@ -156,7 +156,7 @@ export default function Contact() {
         <p className="text-[0.65rem] font-orbitron tracking-widest text-muted">
           DESIGNED & BUILT BY VAIBHAV VEMANI
         </p>
-        <p className="text-[0.55rem] text-gray-700 tracking-widest">
+        <p className="text-[0.55rem] text-[var(--color-text-faint)] tracking-widest">
           © 2025 — ALL RIGHTS RESERVED
         </p>
       </motion.div>

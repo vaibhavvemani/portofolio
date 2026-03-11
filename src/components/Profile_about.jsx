@@ -73,13 +73,13 @@ export default function Profile_about() {
           ease: "easeOut",
         }}
       >
-        <h1 className="text-white text-5xl font-black leading-tight font-orbitron">
+        <h1 className="text-[var(--color-text-primary)] text-5xl font-black leading-tight font-orbitron">
           Hi, I&apos;m{" "}
           <span className="text-accent glow-green-text">Vaibhav.</span>
         </h1>
         <div className="flex items-center gap-2 mt-2">
           <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-glow" />
-          <p className="text-gray-300 text-xl">
+          <p className="text-[var(--color-text-secondary)] text-xl">
             <span ref={typewriter_el} className="text-accent"></span>
           </p>
         </div>
@@ -96,7 +96,7 @@ export default function Profile_about() {
         }}
         className="overflow-hidden rounded-md"
       >
-        <p className="text-gray-400 leading-relaxed max-w-lg">
+        <p className="text-[var(--color-text-tertiary)] leading-relaxed max-w-lg">
           I&apos;m a software engineer based in Bangalore, India. I build things
           (refuse to design) from web apps to machine learning agents and
           anything in between.

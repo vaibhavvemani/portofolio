@@ -7,6 +7,7 @@ import Achievements from "@/components/Achievements";
 import Projects from "@/components/Projects";
 import Interests from "@/components/Interests";
 import Contact from "@/components/Contact";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
 
       {/* Navigation */}
       <RacingNav />
+
+      {/* Theme Toggle */}
+      <ThemeToggle />
 
       {/* Main content - offset for sidebar on desktop */}
       <main className="relative z-10 lg:ml-20">

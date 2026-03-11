@@ -37,7 +37,7 @@ export default function About_me() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <p className="text-gray-300 leading-relaxed text-base">
+          <p className="text-[var(--color-text-secondary)] leading-relaxed text-base">
             Hellooo! I&apos;m Vaibhav Vemani, a developer from Bengaluru, India
             with an obsession for building cool stuff. I&apos;m currently
             studying Artificial Intelligence and Machine Learning, and when
@@ -45,7 +45,7 @@ export default function About_me() {
             I&apos;m probably learning something new—because curiosity is kinda
             my thing.
           </p>
-          <p className="text-gray-400 leading-relaxed text-base">
+          <p className="text-[var(--color-text-tertiary)] leading-relaxed text-base">
             If I don&apos;t know how something works, I have to figure it out.
             Why? Because I&apos;m not here to be just another dev—I&apos;m here
             to be the kind of dev who can&apos;t be replaced by an LLM.
@@ -100,10 +100,10 @@ export default function About_me() {
                   ONLINE
                 </span>
               </div>
-              <h1 className="font-orbitron font-bold text-2xl text-white">
+              <h1 className="font-orbitron font-bold text-2xl text-[var(--color-text-primary)]">
                 VAIBHAV <span className="text-muted">#44</span>
               </h1>
-              <p className="font-light text-sm text-gray-500">
+              <p className="font-light text-sm text-[var(--color-text-muted)]">
                 Trying to be a decent dev
               </p>
             </div>
@@ -113,10 +113,10 @@ export default function About_me() {
               <h3 className="text-[0.65rem] text-muted tracking-widest mb-2">
                 CURRENTLY LEVELING UP
               </h3>
-              <h3 className="text-white text-lg font-semibold mb-3">
+              <h3 className="text-[var(--color-text-primary)] text-lg font-semibold mb-3">
                 LangChain
               </h3>
-              <div className="relative w-full h-2 bg-[#1a1a1a] rounded-full overflow-hidden">
+              <div className="relative w-full h-2 bg-card-hover rounded-full overflow-hidden">
                 <motion.div
                   className="bg-accent h-full rounded-full"
                   initial={{ width: 0 }}
@@ -136,10 +136,10 @@ export default function About_me() {
               <h3 className="text-[0.65rem] text-muted tracking-widest mb-1">
                 NOW PLAYING
               </h3>
-              <h1 className="text-base font-semibold text-white">
+              <h1 className="text-base font-semibold text-[var(--color-text-primary)]">
                 Elden Ring
               </h1>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-[var(--color-text-muted)] mt-1">
                 Losing to the same boss for 3 hours
               </p>
             </div>

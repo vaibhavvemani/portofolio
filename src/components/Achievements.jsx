@@ -7,9 +7,9 @@ const achievements = [
     {
         type: "PATENT",
         icon: "🏆",
-        title: "Patent Title Here",
+        title: "Enhanced Apiculture Threat Detection System",
         description:
-            "Brief description of the patent and the problem it solves. Update this with your actual patent details.",
+            "Indian patent filed for an AI-powered system that protects beehives from predators using machine learning.",
         longDesc:
             "A comprehensive overview of the patent, including the background of the invention, the specific technical problem it addresses, the novel methodologies proposed, and the potential impact on the industry. This section provides an in-depth look at the IP generated.",
         tags: ["Innovation", "Hardware", "Algorithm", "Pending"],
@@ -22,9 +22,9 @@ const achievements = [
     {
         type: "RESEARCH",
         icon: "📄",
-        title: "Research Paper Title",
+        title: "Apiculture Threat Detection and Health Monitoring System",
         description:
-            "Description of your research paper, methodology, and key findings. Update with actual details.",
+            "Research paper published at IEEE 2026 - a machine learning based apiculture threat and health monitoring system",
         longDesc:
             "Detailed summary covering the research thesis, experimental setup, data collection methodologies, and the final results. This includes the comparative analysis with existing solutions and the theoretical implications of the work.",
         tags: ["Machine Learning", "Data Science", "Published", "IEEE"],
@@ -37,9 +37,9 @@ const achievements = [
     {
         type: "GRANT",
         icon: "💰",
-        title: "Grant / Award Title",
+        title: "Government Research Grant",
         description:
-            "Description of the grant or award you received and its significance. Update with actual details.",
+            "Received a government research grant for the development of an AI-powered system that protects beehives from predators using machine learning.",
         longDesc:
             "An outline of the funding received, the purpose of the grant, and the expected milestones. Details the selection process, the competitive nature of the award, and the future work it enables.",
         tags: ["Funding", "Research", "Excellence"],
@@ -50,18 +50,18 @@ const achievements = [
         link: "#",
     },
     {
-        type: "PATENT",
-        icon: "🏆",
-        title: "Another Patent Title",
+        type: "RESEARCH",
+        icon: "📄",
+        title: "Virtual Boundary Detection for Industrial Safety",
         description:
-            "Brief description of your second patent. Update this with actual patent details.",
+            "Conference paper presented at ICICC 2025 - a machine learning based safety zone enforement",
         longDesc:
-            "An elaborate description of the secondary patent, explaining the core novelty, the technical architecture, and the specific claims. Also covers the roadmap for commercialization and implementation.",
-        tags: ["Software", "System Architecture", "Security"],
-        status: "Pending",
-        accent: "border-accent-red",
-        accentColor: "#FF3333",
-        glow: "shadow-[0_0_15px_rgba(255,51,51,0.1)]",
+            "Detailed summary covering the research thesis, experimental setup, data collection methodologies, and the final results. This includes the comparative analysis with existing solutions and the theoretical implications of the work.",
+        tags: ["Machine Learning", "Data Science", "Published", "IEEE"],
+        status: "Published",
+        accent: "border-accent-blue",
+        accentColor: "#00A3FF",
+        glow: "shadow-[0_0_15px_rgba(0,163,255,0.1)]",
         link: "#",
     },
 ];
@@ -91,7 +91,7 @@ function AchievementOverlay({ achievement, onClose }) {
         >
             {/* Backdrop */}
             <motion.div
-                className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+                className="absolute inset-0 bg-[var(--color-overlay)] backdrop-blur-sm"
                 onClick={onClose}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -100,7 +100,7 @@ function AchievementOverlay({ achievement, onClose }) {
 
             {/* Modal content */}
             <motion.div
-                className={`relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-[#0d0d0d] border ${achievement.accent} border-border-subtle shadow-2xl`}
+                className={`relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${achievement.accent} border-border-subtle shadow-2xl`}
                 initial={{ scale: 0.85, y: 40, opacity: 0 }}
                 animate={{ scale: 1, y: 0, opacity: 1 }}
                 exit={{ scale: 0.9, y: 20, opacity: 0 }}
@@ -114,7 +114,7 @@ function AchievementOverlay({ achievement, onClose }) {
                     {/* Close button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-white hover:border-accent/30 transition-all duration-300"
+                        className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
                     >
                         ✕
                     </button>
@@ -158,7 +158,7 @@ function AchievementOverlay({ achievement, onClose }) {
                         <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-2">
                             DETAILS
                         </h3>
-                        <p className="text-gray-300 leading-relaxed text-sm">
+                        <p className="text-[var(--color-text-secondary)] leading-relaxed text-sm">
                             {achievement.longDesc || achievement.description}
                         </p>
                     </div>
@@ -173,7 +173,7 @@ function AchievementOverlay({ achievement, onClose }) {
                                 {achievement.tags.map((t) => (
                                     <span
                                         key={t}
-                                        className="text-[0.65rem] px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-gray-300 font-orbitron tracking-wider hover:border-accent/30 transition-colors duration-300"
+                                        className="text-[0.65rem] px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-secondary)] font-orbitron tracking-wider hover:border-accent/30 transition-colors duration-300"
                                     >
                                         {t}
                                     </span>
@@ -207,7 +207,7 @@ function AchievementOverlay({ achievement, onClose }) {
 
                         <motion.button
                             onClick={onClose}
-                            className={`px-6 h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-white hover:border-accent/30 transition-all duration-300 ${(!achievement.link || achievement.link === "#") ? "flex-1" : ""}`}
+                            className={`px-6 h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300 ${(!achievement.link || achievement.link === "#") ? "flex-1" : ""}`}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                         >
@@ -256,11 +256,11 @@ function AchievementCard({ achievement, index, onClick }) {
             </div>
 
             {/* Title & Description */}
-            <h3 className="text-lg font-bold text-white mb-2 transition-colors duration-300 group-hover:text-opacity-80">
+            <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2 transition-colors duration-300 group-hover:text-opacity-80">
                 {achievement.title}
             </h3>
 
-            <p className="text-sm text-gray-500 leading-relaxed mb-4">
+            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
                 {achievement.description}
             </p>
 
@@ -270,7 +270,7 @@ function AchievementCard({ achievement, index, onClick }) {
                     {achievement.tags.slice(0, 3).map((t) => (
                         <span
                             key={t}
-                            className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-gray-400 font-orbitron tracking-wider"
+                            className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-[var(--color-text-tertiary)] font-orbitron tracking-wider"
                         >
                             {t}
                         </span>

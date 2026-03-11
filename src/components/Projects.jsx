@@ -101,7 +101,7 @@ function ProjectOverlay({ project, onClose }) {
     >
       {/* Backdrop */}
       <motion.div
-        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        className="absolute inset-0 bg-[var(--color-overlay)] backdrop-blur-sm"
         onClick={onClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -110,7 +110,7 @@ function ProjectOverlay({ project, onClose }) {
 
       {/* Modal content */}
       <motion.div
-        className={`relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-[#0d0d0d] border ${project.accent} border-border-subtle shadow-2xl`}
+        className={`relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${project.accent} border-border-subtle shadow-2xl`}
         initial={{ scale: 0.85, y: 40, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
         exit={{ scale: 0.9, y: 20, opacity: 0 }}
@@ -130,7 +130,7 @@ function ProjectOverlay({ project, onClose }) {
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-white hover:border-accent/30 transition-all duration-300"
+            className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
           >
             ✕
           </button>
@@ -173,7 +173,7 @@ function ProjectOverlay({ project, onClose }) {
             <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-2">
               OVERVIEW
             </h3>
-            <p className="text-gray-300 leading-relaxed text-sm">
+            <p className="text-[var(--color-text-secondary)] leading-relaxed text-sm">
               {project.longDesc}
             </p>
           </div>
@@ -187,7 +187,7 @@ function ProjectOverlay({ project, onClose }) {
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="text-[0.65rem] px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-gray-300 font-orbitron tracking-wider hover:border-accent/30 transition-colors duration-300"
+                  className="text-[0.65rem] px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-secondary)] font-orbitron tracking-wider hover:border-accent/30 transition-colors duration-300"
                 >
                   {t}
                 </span>
@@ -263,7 +263,7 @@ function ProjectOverlay({ project, onClose }) {
 
             <motion.button
               onClick={onClose}
-              className="px-6 h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-white hover:border-accent/30 transition-all duration-300"
+              className="px-6 h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -299,7 +299,7 @@ function ProjectCard({ project, index, onClick }) {
       </div>
 
       {/* Project Name */}
-      <h3 className="text-2xl font-bold text-white mt-1 mb-3 group-hover:text-accent transition-colors duration-300 font-orbitron">
+      <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mt-1 mb-3 group-hover:text-accent transition-colors duration-300 font-orbitron">
         {project.name}
       </h3>
 
@@ -307,7 +307,7 @@ function ProjectCard({ project, index, onClick }) {
       <div className="w-12 h-[1px] bg-border-subtle mb-3" />
 
       {/* Description */}
-      <p className="text-sm text-gray-500 leading-relaxed mb-4">
+      <p className="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
         {project.desc}
       </p>
 
@@ -316,7 +316,7 @@ function ProjectCard({ project, index, onClick }) {
         {project.tech.slice(0, 3).map((t) => (
           <span
             key={t}
-            className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-gray-400 font-orbitron tracking-wider"
+            className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-[var(--color-text-tertiary)] font-orbitron tracking-wider"
           >
             {t}
           </span>

@@ -5,7 +5,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
+@theme {
   --color-background: #0a0a0a;
   --color-card: #141414;
   --color-card-hover: #1a1a1a;
@@ -16,6 +16,15 @@
   --color-muted: #666666;
   --color-surface: #111111;
   --color-border-subtle: #222222;
+  --color-foreground: #e0e0e0;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #d1d5db;
+  --color-text-tertiary: #9ca3af;
+  --color-text-muted: #6b7280;
+  --color-text-placeholder: #4b5563;
+  --color-text-faint: #374151;
+  --color-overlay: rgba(0, 0, 0, 0.8);
+  --color-nav-bg: rgba(10, 10, 10, 0.9);
   --color-secondary: var(--secondary);
   --color-primary: var(--primary);
   --radius-sm: calc(var(--radius) - 4px);
@@ -28,8 +37,9 @@
 body {
   font-family: "JetBrains Mono", monospace;
   background: var(--color-background);
-  color: #e0e0e0;
+  color: var(--color-foreground);
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 :root {
@@ -54,13 +64,36 @@ body {
   --ring: oklch(0.708 0 0);
 }
 
+/* ===== Light Mode Overrides ===== */
+html.light {
+  --color-background: #f5f5f5;
+  --color-card: #ffffff;
+  --color-card-hover: #f0f0f0;
+  --color-accent: #00994D;
+  --color-accent-red: #CC2929;
+  --color-accent-yellow: #CC9300;
+  --color-accent-blue: #0080CC;
+  --color-muted: #888888;
+  --color-surface: #eaeaea;
+  --color-border-subtle: #d0d0d0;
+  --color-foreground: #1a1a1a;
+  --color-text-primary: #111111;
+  --color-text-secondary: #333333;
+  --color-text-tertiary: #555555;
+  --color-text-muted: #777777;
+  --color-text-placeholder: #999999;
+  --color-text-faint: #bbbbbb;
+  --color-overlay: rgba(255, 255, 255, 0.85);
+  --color-nav-bg: rgba(245, 245, 245, 0.92);
+}
+
 /* ===== Font Utilities ===== */
 .font-orbitron {
   font-family: "Orbitron", sans-serif;
 }
 
 .font-outline-1 {
-  -webkit-text-stroke: 1px #00FF66;
+  -webkit-text-stroke: 1px var(--color-accent);
 }
 
 .font-outline-4 {
@@ -79,7 +112,7 @@ body {
   bottom: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #00FF66 0%, #00FF66 33%, transparent 33%, transparent 36%, #FF3333 36%, #FF3333 66%, transparent 66%, transparent 69%, #FFB800 69%, #FFB800 100%);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent) 33%, transparent 33%, transparent 36%, var(--color-accent-red) 36%, var(--color-accent-red) 66%, transparent 66%, transparent 69%, var(--color-accent-yellow) 69%, var(--color-accent-yellow) 100%);
 }
 
 /* ===== Scanline Effect ===== */
@@ -103,17 +136,37 @@ body {
   pointer-events: none;
 }
 
+html.light .scanline::after {
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 153, 77, 0.03) 2px,
+      rgba(0, 153, 77, 0.03) 4px);
+}
+
 /* ===== Glow Effects ===== */
 .glow-green {
   box-shadow: 0 0 20px rgba(0, 255, 102, 0.15), 0 0 60px rgba(0, 255, 102, 0.05);
+}
+
+html.light .glow-green {
+  box-shadow: 0 0 15px rgba(0, 153, 77, 0.1), 0 0 40px rgba(0, 153, 77, 0.03);
 }
 
 .glow-green-text {
   text-shadow: 0 0 10px rgba(0, 255, 102, 0.5), 0 0 30px rgba(0, 255, 102, 0.2);
 }
 
+html.light .glow-green-text {
+  text-shadow: none;
+}
+
 .glow-red {
   box-shadow: 0 0 20px rgba(255, 51, 51, 0.15), 0 0 60px rgba(255, 51, 51, 0.05);
+}
+
+html.light .glow-red {
+  box-shadow: 0 0 15px rgba(204, 41, 41, 0.1), 0 0 40px rgba(204, 41, 41, 0.03);
 }
 
 /* ===== Carbon Fiber Background ===== */
@@ -127,6 +180,14 @@ body {
   background-position: 0 0, 0 2px, 2px -2px, -2px 0;
 }
 
+html.light .carbon-fiber {
+  background-image:
+    linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+    linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+    linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+}
+
 /* ===== Grid Background ===== */
 .grid-bg {
   background-image:
@@ -135,22 +196,28 @@ body {
   background-size: 40px 40px;
 }
 
+html.light .grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 153, 77, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 153, 77, 0.06) 1px, transparent 1px);
+}
+
 /* ===== Custom Scrollbar ===== */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--color-border-subtle);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00FF66;
+  background: var(--color-accent);
 }
 
 /* ===== Section shared styles ===== */
@@ -167,7 +234,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: white;
+  color: var(--color-text-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -230,5 +297,15 @@ body {
 /* ===== Selection Color ===== */
 ::selection {
   background: rgba(0, 255, 102, 0.3);
-  color: white;
+  color: var(--color-text-primary);
+}
+
+html.light ::selection {
+  background: rgba(0, 153, 77, 0.2);
+  color: #111111;
+}
+
+/* ===== Theme transition for cards & borders ===== */
+html * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }

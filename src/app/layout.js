@@ -1,4 +1,5 @@
 import "./globals.css";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "Vaibhav Vemani — Developer, Builder, Gamer",
@@ -25,7 +26,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

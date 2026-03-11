@@ -94,7 +94,7 @@ export default function Interests() {
                             <div className="flex items-center gap-3 mb-3">
                                 <span className="text-3xl">{interest.emoji}</span>
                                 <div>
-                                    <h3 className="font-bold text-white text-lg group-hover:text-accent transition-colors duration-300">
+                                    <h3 className="font-bold text-[var(--color-text-primary)] text-lg group-hover:text-accent transition-colors duration-300">
                                         {interest.title}
                                     </h3>
                                     <span className="text-[0.6rem] font-orbitron tracking-widest text-muted">
@@ -104,7 +104,7 @@ export default function Interests() {
                             </div>
 
                             {/* Description */}
-                            <p className="text-sm text-gray-500 leading-relaxed">
+                            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
                                 {interest.description}
                             </p>
                         </div>
