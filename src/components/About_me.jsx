@@ -38,18 +38,11 @@ export default function About_me() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <p className="text-[var(--color-text-secondary)] leading-relaxed text-base">
-            Hellooo! I&apos;m Vaibhav Vemani, a developer from Bengaluru, India
-            with an obsession for building cool stuff. I&apos;m currently
-            studying Artificial Intelligence and Machine Learning, and when
-            I&apos;m not decoding neural nets or debugging web apps at 2 AM,
-            I&apos;m probably learning something new—because curiosity is kinda
-            my thing.
+            Hey, I'm Vaibhav Vemani — a developer from Bengaluru with a bit of a problem. I see something broken or missing and I have to build it. Not because I have to, because I genuinely can't help it.
+            To me, software development feels less like engineering and more like art. There's something about taking nothing and turning it into something that actually works — I don't think I'll ever get tired of that feeling.
           </p>
           <p className="text-[var(--color-text-tertiary)] leading-relaxed text-base">
-            If I don&apos;t know how something works, I have to figure it out.
-            Why? Because I&apos;m not here to be just another dev—I&apos;m here
-            to be the kind of dev who can&apos;t be replaced by an LLM.
-            (Sorry, GPT 👀)
+            On the AI thing — I think it's an incredible tool. But a tool is only as good as the person behind it, and I'd rather be the person who truly understands what's being built than someone who can't tell good code from bad. Even if AI one day writes better systems than me — and honestly, it might (it already can) — I'll still be writing code. Painters didn't stop painting when the camera was invented.
           </p>
 
           {/* Racing Stats Bar */}

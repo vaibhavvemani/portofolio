@@ -97,9 +97,7 @@ export default function Profile_about() {
         className="overflow-hidden rounded-md"
       >
         <p className="text-[var(--color-text-tertiary)] leading-relaxed max-w-lg">
-          I&apos;m a software engineer based in Bangalore, India. I build things
-          (refuse to design) from web apps to machine learning agents and
-          anything in between.
+          I'm a software engineer based in Bangalore, India. I build things — web apps, ML systems, edge devices, whatever the problem calls for. If it's an interesting problem, I'm probably already thinking about it.
         </p>
       </motion.div>
 

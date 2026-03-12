@@ -7,32 +7,32 @@ const projects = [
   {
     name: "Word Lens",
     category: "COMPUTER VISION",
-    desc: "A reading tool that provides readers the ability to retrieve definitions of words in real time. Point to the word with a pen and find the definition of the word in real-time.",
-    longDesc: "Word Lens uses computer vision and OCR to detect words pointed at by a pen in real-time. The system processes video frames, identifies the pointed word using contour detection and geometric analysis, then queries a dictionary API to display the definition instantly. Built to make reading more accessible and interactive.",
-    tech: ["Python", "OpenCV", "OCR", "Flask"],
-    github: "https://github.com/vaibhavvemani",
+    desc: "Point at a word with a pen, get its definition read aloud. Built because Shakespeare shouldn't require a second browser tab.",
+    longDesc: "I was reading Shakespeare — as one does when they're trying to feel cultured — and I was Googling a word every other line. At some point I thought, what if I could just point at a word and hear what it means? So I built that.\n\nWorked with a team of 3. We used YOLO and EasyOCR (tested a bunch of other models too) to detect and extract the word being pointed at, ran NLP to understand context, and then fed it to an AI to pull a context-aware definition. The whole pipeline runs in real-time, which was harder than it sounds.\n\nThe trickiest part was getting the pointing detection right — turns out pens at weird angles in bad lighting are a nightmare for computer vision. But we got it working well enough that we filed a patent for it. Still one of my favorite \"what if\" projects that actually became a real thing.",
+    tech: ["Python", "YOLO", "EasyOCR", "NLP", "Flask"],
+    github: "https://github.com/vaibhavvemani/Word-Lens",
     accent: "border-accent",
     accentColor: "#00FF66",
-    status: "COMPLETED",
+    status: "PATENTED",
   },
   {
     name: "Bee Safe",
     category: "ML / IoT",
-    desc: "Automated Bee threat detection tool that helps increase and monitor bee colony health. This tool will alert the user when a threat to the colony is detected. It will also predict colony health using bee acoustics.",
-    longDesc: "Bee Safe combines IoT sensors with machine learning models to monitor bee colony health in real-time. The system analyzes bee acoustics using audio classification models to predict colony health status, while computer vision detects physical threats like wasps and hornets. Alerts are sent to beekeepers via a dashboard and push notifications.",
-    tech: ["Python", "TensorFlow", "IoT", "Raspberry Pi", "Audio ML"],
-    github: "https://github.com/vaibhavvemani",
+    desc: "AI-powered bee colony guardian — detects threats, predicts health from sound, and alerts beekeepers. Got a ₹10L government grant. Published a research paper.",
+    longDesc: "This one started on a college excursion. We met a team doing bee conservation work, and they painted a pretty grim picture — bee populations are plummeting and there's almost zero tech in the space. I went home, did my own research, and yeah, they were right. So we decided to do something about it.\n\nWe collaborated with apiculture professionals, visited actual beekeeping grounds, and applied for a government grant — and got ₹10 Lakh. Built our own dataset of bee threats (wasps, hornets, moths) since most images we found were unlabeled. With a 4-person team and thousands of images, we built a segmentation pipeline to auto-label bounding boxes. It worked... okay. Not perfectly, but it saved us from labeling everything by hand.\n\nAlso built a colony health prediction model using sound data from 4 hives — classifying Healthy, Moderate, Unhealthy, and Queenless colonies. The model worked almost too well at first. Turned out it was overfitting. Classic. It failed hard on real-time data, which was a humbling lesson in the gap between a Jupyter notebook and the real world.\n\nWe still shipped a working backend and edge alert system for beekeepers, and published a research paper on the whole thing. Not every piece worked perfectly, but the bees are slightly safer because of it. I'll take that.",
+    tech: ["Python", "TensorFlow", "IoT", "Audio ML", "Edge Computing"],
+    github: "https://github.com/vaibhavvemani/apiculture_backend",
     accent: "border-accent-yellow",
     accentColor: "#FFB800",
-    status: "COMPLETED",
+    status: "PUBLISHED",
   },
   {
     name: "Grounded",
     category: "DEV TOOLS",
-    desc: "A developer tool that is used to quickly parse a code and generate test cases for the user, significantly reducing development time. Also supports website and document related queries using RAG.",
-    longDesc: "Grounded is an AI-powered developer tool that automates test case generation from source code. It parses code structure, understands function signatures and logic, then generates comprehensive unit tests. Also features a RAG-based query system that lets developers ask questions about their codebase, documentation, or any website content.",
-    tech: ["LangChain", "RAG", "Python", "FastAPI", "ChromaDB"],
-    github: "https://github.com/vaibhavvemani",
+    desc: "Upload code, get auto-generated tests. Upload docs, ask questions via RAG. Born from the pain of writing unit tests by hand.",
+    longDesc: "Early in my engineering days, I was building a backend for a client and decided to be responsible and write tests for everything. Except writing tests is genuinely one of the most tedious things in software development. After the third test file, I thought: what if I just upload a function and it generates tests for me?\n\nSo I built Grounded — you upload a file or function, pick your preferred language, and it auto-generates test cases. Used a compiler-like system to parse code structure and AI APIs to generate meaningful tests. Not boilerplate filler — actual tests that understand what the code is supposed to do.\n\nI also wanted to learn RAG at the time, so I rolled that into the same project. Devs can upload documentation (PDFs or URLs) and ask questions about it using retrieval-augmented generation. Built the whole thing with LangChain, Next.js, and a bunch of AI tooling.\n\nIs it perfect? No. But it saves real time, and it taught me more about RAG pipelines than any tutorial could have.",
+    tech: ["LangChain", "Next.js", "RAG", "AI APIs", "Compilers"],
+    github: "https://github.com/vaibhavvemani/grounded-api",
     accent: "border-accent-blue",
     accentColor: "#00A3FF",
     status: "COMPLETED",
@@ -40,10 +40,10 @@ const projects = [
   {
     name: "Revlift",
     category: "WEB APP",
-    desc: "A comprehensive car wiki, built for enthusiasts. A one stop for everything you need to learn about your favorite car.",
-    longDesc: "Revlift is a full-stack car encyclopedia built for automotive enthusiasts. Features detailed specs, history, and comparisons for thousands of cars. The platform includes user-generated reviews, performance data, and a comparison tool. Built with a focus on beautiful UI and fast search experience.",
-    tech: ["Next.js", "React", "REST API", "Tailwind CSS"],
-    github: "https://github.com/vaibhavvemani",
+    desc: "A clean, all-in-one car wiki that actually looks good. Because checking 5 different terrible websites for car stats is unacceptable.",
+    longDesc: "I'm a car guy. And looking up car stats used to mean visiting 5 different websites, all with UIs that looked like they were designed in 2006 by someone who hated users. I wanted one place where everything — specs, comparisons, the works — was presented cleanly and at a glance.\n\nBuilt Revlift with Svelte (which I was fairly new to at the time) and Supabase. It was one of my first real end-to-end websites, and I learned a lot about what it takes to ship something complete — from database design to responsive layouts to making the UI feel fast.\n\nI'm fully aware that AI-powered browsers are slowly making this kind of project redundant. You can just ask a question and get the answer now. But honestly? The website still looks cool, the build taught me a ton, and I stand by it.",
+    tech: ["Svelte", "Supabase", "REST API", "CSS"],
+    github: "https://github.com/vaibhavvemani/Revlift",
     accent: "border-accent-red",
     accentColor: "#FF3333",
     status: "COMPLETED",
@@ -53,26 +53,26 @@ const projects = [
 // Additional projects shown when "View More" is expanded
 const moreProjects = [
   {
-    name: "Project Alpha",
-    category: "FULL STACK",
-    desc: "Add your next project here. This is a placeholder for additional projects you want to showcase.",
-    longDesc: "Detailed description of Project Alpha. Replace this with your actual project details, including the problem it solves, the approach you took, and the results.",
-    tech: ["React", "Node.js", "MongoDB"],
+    name: "NewsSense",
+    category: "AI / FINTECH",
+    desc: "Ask why a stock tanked today, get an answer backed by real news. Hackathon project. Didn't win. Still proud.",
+    longDesc: "Built this at a hackathon. The problem was simple: the stock market reacts to news every single day, but nobody has time to read all of it. When someone asks \"why is QQQ down today?\" — Google gives you 47 articles. We wanted one clear answer, backed by sources.\n\nOur approach: we scraped major news sources daily, summarized the articles using AI before storing them (keeps the vector database lean and fast), then used LangChain similarity search to surface the most relevant articles for any given stock query. Type in a ticker, get a news-grounded explanation of what's moving it.\n\nWe didn't win the hackathon. But the pipeline worked, the demo was solid, and I learned a ton about building with vector databases under time pressure. Sometimes the best projects are the ones that don't win — you build them for the thrill, not the trophy.",
+    tech: ["LangChain", "Vector DB", "Web Scraping", "AI APIs", "Python"],
     github: "https://github.com/vaibhavvemani",
     accent: "border-accent",
     accentColor: "#00FF66",
-    status: "IN PROGRESS",
+    status: "COMPLETED",
   },
   {
-    name: "Project Beta",
-    category: "ML / AI",
-    desc: "Another placeholder project. Swap this out with your real project details.",
-    longDesc: "Detailed description of Project Beta. Replace this with your actual project details.",
-    tech: ["Python", "PyTorch", "FastAPI"],
+    name: "HireLens",
+    category: "FULL STACK",
+    desc: "A full university services platform — attendance, placements, AI insights, the works. Built it end to end. Never got deployed. The lesson stuck.",
+    longDesc: "Our college had a placement portal that was… rough. Bad UI, limited features, clearly built by someone who never asked a student what they actually needed. My team and I decided to think bigger — what if we built a full university services platform?\n\nSo we did. Attendance tracking, class schedules, lecture material, practice exams, placement drives, a resume builder, AI-powered insights on interview progress, notice boards, and a college calendar. The full thing, end to end. It was probably the most ambitious project I've worked on in terms of scope.\n\nThen, right at the finish line, management changed. The new team wasn't interested. The project never got deployed. That stung.\n\nBut here's the thing — building something at that scale taught me more about infrastructure, product thinking, and teamwork than any course ever could. The code might be sitting in a repo collecting dust, but the education from it? That lives on. Sometimes you build things that never ship, and that's still worth it.",
+    tech: ["React", "Node.js", "MongoDB", "AI APIs", "REST API"],
     github: "https://github.com/vaibhavvemani",
     accent: "border-accent-yellow",
     accentColor: "#FFB800",
-    status: "IN PROGRESS",
+    status: "SHELVED",
   },
 ];
 
@@ -173,9 +173,11 @@ function ProjectOverlay({ project, onClose }) {
             <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-2">
               OVERVIEW
             </h3>
-            <p className="text-[var(--color-text-secondary)] leading-relaxed text-sm">
-              {project.longDesc}
-            </p>
+            <div className="text-[var(--color-text-secondary)] leading-relaxed text-sm space-y-3">
+              {project.longDesc.split("\n\n").map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
           </div>
 
           {/* Tech Stack */}
