@@ -80,6 +80,7 @@ export default function About_me() {
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ delay: 0.3, duration: 0.5 }}
+          whileHover={{ y: -5, scale: 1.01 }}
         >
           <div className="p-5 flex flex-col gap-5 bg-card rounded-xl border border-border-subtle glow-green relative overflow-hidden">
             {/* Scanline overlay */}

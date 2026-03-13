@@ -100,7 +100,7 @@ function AchievementOverlay({ achievement, onClose }) {
 
             {/* Modal content */}
             <motion.div
-                className={`relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${achievement.accent} border-border-subtle shadow-2xl`}
+                className={`relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${achievement.accent} border-border-subtle shadow-2xl`}
                 initial={{ scale: 0.85, y: 40, opacity: 0 }}
                 animate={{ scale: 1, y: 0, opacity: 1 }}
                 exit={{ scale: 0.9, y: 20, opacity: 0 }}
@@ -110,109 +110,152 @@ function AchievementOverlay({ achievement, onClose }) {
                 {/* Scanline overlay */}
                 <div className="absolute inset-0 scanline pointer-events-none rounded-2xl" />
 
-                <div className="relative p-8">
+                <div className="relative p-8 md:p-10">
                     {/* Close button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
+                        className="absolute top-4 right-4 z-10 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
                     >
                         ✕
                     </button>
 
-                    {/* Header */}
-                    <div className="mb-6">
-                        <div className="flex items-center gap-3 mb-2">
-                            <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
-                                {achievement.type}
-                            </span>
-                            <span
-                                className="text-[0.55rem] font-orbitron tracking-wider px-2 py-0.5 rounded-full border"
-                                style={{
-                                    color: achievement.accentColor,
-                                    borderColor: achievement.accentColor + "40",
-                                    background: achievement.accentColor + "10",
-                                }}
-                            >
-                                {achievement.status}
-                            </span>
-                        </div>
-
-                        <h2
-                            className="text-3xl font-bold font-orbitron mb-1 flex items-center gap-3"
-                            style={{ color: achievement.accentColor }}
-                        >
-                            <span>{achievement.icon}</span>
-                            {achievement.title}
-                        </h2>
-
-                        <div
-                            className="w-16 h-[2px] mt-3"
-                            style={{
-                                background: `linear-gradient(90deg, ${achievement.accentColor}, transparent)`,
-                            }}
-                        />
-                    </div>
-
-                    {/* Detailed description */}
-                    <div className="mb-6">
-                        <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-2">
-                            DETAILS
-                        </h3>
-                        <p className="text-[var(--color-text-secondary)] leading-relaxed text-sm">
-                            {achievement.longDesc || achievement.description}
-                        </p>
-                    </div>
-
-                    {/* Tags */}
-                    {achievement.tags && (
-                        <div className="mb-6">
-                            <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-3">
-                                TAGS
-                            </h3>
-                            <div className="flex flex-wrap gap-2">
-                                {achievement.tags.map((t) => (
-                                    <span
-                                        key={t}
-                                        className="text-[0.65rem] px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-secondary)] font-orbitron tracking-wider hover:border-accent/30 transition-colors duration-300"
-                                    >
-                                        {t}
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+                        {/* Left Column: Header & Actions */}
+                        <div className="md:col-span-4 flex flex-col">
+                            {/* Header */}
+                            <div className="mb-6">
+                                <div className="flex flex-wrap items-center gap-2 mb-3">
+                                    <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
+                                        {achievement.type}
                                     </span>
-                                ))}
+                                    <span
+                                        className="text-[0.55rem] font-orbitron tracking-wider px-2 py-0.5 rounded-full border"
+                                        style={{
+                                            color: achievement.accentColor,
+                                            borderColor: achievement.accentColor + "40",
+                                            background: achievement.accentColor + "10",
+                                        }}
+                                    >
+                                        {achievement.status}
+                                    </span>
+                                </div>
+
+                                <h2
+                                    className="text-3xl sm:text-4xl font-bold font-orbitron mb-2 leading-tight flex items-start gap-3"
+                                    style={{ color: achievement.accentColor }}
+                                >
+                                    <span className="mt-1">{achievement.icon}</span>
+                                    <span>{achievement.title}</span>
+                                </h2>
+
+                                <div
+                                    className="w-16 h-[2px] mt-4"
+                                    style={{
+                                        background: `linear-gradient(90deg, ${achievement.accentColor}, transparent)`,
+                                    }}
+                                />
+                            </div>
+
+                            {/* Action buttons Desktop */}
+                            <div className="hidden md:flex flex-col gap-3 mt-auto pt-6 border-t border-border-subtle">
+                                {achievement.link && achievement.link !== "#" && (
+                                    <motion.a
+                                        href={achievement.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full h-11 rounded-lg border flex items-center justify-center gap-2 text-sm font-orbitron tracking-wider transition-all duration-300"
+                                        style={{
+                                            borderColor: achievement.accentColor + "40",
+                                            color: achievement.accentColor,
+                                            background: achievement.accentColor + "08",
+                                        }}
+                                        whileHover={{
+                                            scale: 1.02,
+                                            boxShadow: `0 0 20px ${achievement.accentColor}20`,
+                                        }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        VIEW DETAILS
+                                    </motion.a>
+                                )}
+
+                                <motion.button
+                                    onClick={onClose}
+                                    className="w-full h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    CLOSE
+                                </motion.button>
                             </div>
                         </div>
-                    )}
 
-                    {/* Action buttons */}
-                    <div className="flex gap-3 mt-8">
-                        {achievement.link && achievement.link !== "#" && (
-                            <motion.a
-                                href={achievement.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 h-11 rounded-lg border flex items-center justify-center gap-2 text-sm font-orbitron tracking-wider transition-all duration-300"
-                                style={{
-                                    borderColor: achievement.accentColor + "40",
-                                    color: achievement.accentColor,
-                                    background: achievement.accentColor + "08",
-                                }}
-                                whileHover={{
-                                    scale: 1.02,
-                                    boxShadow: `0 0 20px ${achievement.accentColor}20`,
-                                }}
-                                whileTap={{ scale: 0.98 }}
-                            >
-                                VIEW DETAILS
-                            </motion.a>
-                        )}
+                        {/* Right Column: Description & Tags */}
+                        <div className="md:col-span-8 flex flex-col">
+                            {/* Detailed description */}
+                            <div className="mb-8">
+                                <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-3">
+                                    DETAILS
+                               </h3>
+                                <div className="text-[var(--color-text-secondary)] leading-relaxed text-sm sm:text-base space-y-4">
+                                    {(achievement.longDesc || achievement.description).split("\n\n").map((para, i) => (
+                                        <p key={i}>{para}</p>
+                                    ))}
+                                </div>
+                            </div>
 
-                        <motion.button
-                            onClick={onClose}
-                            className={`px-6 h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300 ${(!achievement.link || achievement.link === "#") ? "flex-1" : ""}`}
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                        >
-                            CLOSE
-                        </motion.button>
+                            {/* Tags */}
+                            {achievement.tags && (
+                                <div className="mb-0 md:mb-6">
+                                    <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-4">
+                                        TAGS
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2.5">
+                                        {achievement.tags.map((t) => (
+                                            <span
+                                                key={t}
+                                                className="text-[0.7rem] px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-secondary)] font-orbitron tracking-wider hover:border-accent/30 transition-colors duration-300"
+                                            >
+                                                {t}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Action buttons Mobile */}
+                            <div className="flex md:hidden gap-3 mt-8 pt-6 border-t border-border-subtle">
+                                {achievement.link && achievement.link !== "#" && (
+                                    <motion.a
+                                        href={achievement.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex-1 h-11 rounded-lg border flex items-center justify-center gap-2 text-sm font-orbitron tracking-wider transition-all duration-300"
+                                        style={{
+                                            borderColor: achievement.accentColor + "40",
+                                            color: achievement.accentColor,
+                                            background: achievement.accentColor + "08",
+                                        }}
+                                        whileHover={{
+                                            scale: 1.02,
+                                            boxShadow: `0 0 20px ${achievement.accentColor}20`,
+                                        }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
+                                        DETAILS
+                                    </motion.a>
+                                )}
+
+                                <motion.button
+                                    onClick={onClose}
+                                    className={`h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300 ${(!achievement.link || achievement.link === "#") ? "flex-1" : "px-6"}`}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    CLOSE
+                                </motion.button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </motion.div>
@@ -224,12 +267,13 @@ function AchievementOverlay({ achievement, onClose }) {
 function AchievementCard({ achievement, index, onClick }) {
     return (
         <motion.div
-            className={`group relative p-6 rounded-xl bg-card border-l-4 ${achievement.accent} border border-border-subtle hover:border-opacity-50 transition-all duration-500 ${achievement.glow} hover:bg-card-hover cursor-pointer overflow-hidden`}
+            className={`group relative p-6 rounded-xl bg-card border-b-4 ${achievement.accent} border border-border-subtle hover:border-accent transition-all duration-500 hover:bg-card-hover cursor-pointer overflow-hidden ${achievement.glow}`}
+            style={{ '--hover-color': achievement.accentColor + '40' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -4 }}
+            whileHover={{ y: -5, scale: 1.01, boxShadow: `0 10px 30px -10px ${achievement.accentColor}40` }}
             onClick={onClick}
         >
             {/* Type Badge & Click hint */}
@@ -241,8 +285,15 @@ function AchievementCard({ achievement, index, onClick }) {
                     </span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <span className="text-[0.45rem] sm:text-[0.55rem] text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-orbitron tracking-wider flex items-center">
-                        EXPAND <span className="ml-[2px] opacity-70">↗</span>
+                    <span 
+                        className="text-[0.55rem] font-orbitron tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 px-2 py-1 rounded-md border"
+                        style={{ 
+                            color: achievement.accentColor, 
+                            borderColor: achievement.accentColor + '40', 
+                            background: achievement.accentColor + '10' 
+                        }}
+                    >
+                        MORE DETAILS ↗
                     </span>
                     <span className="text-[0.65rem] font-orbitron tracking-wider px-2 py-1 rounded-full border"
                         style={{

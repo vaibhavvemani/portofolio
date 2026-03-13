@@ -110,7 +110,7 @@ function ProjectOverlay({ project, onClose }) {
 
       {/* Modal content */}
       <motion.div
-        className={`relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${project.accent} border-border-subtle shadow-2xl`}
+        className={`relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${project.accent} border-border-subtle shadow-2xl`}
         initial={{ scale: 0.85, y: 40, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
         exit={{ scale: 0.9, y: 20, opacity: 0 }}
@@ -126,151 +126,171 @@ function ProjectOverlay({ project, onClose }) {
         {/* Scanline overlay */}
         <div className="absolute inset-0 scanline pointer-events-none rounded-2xl" />
 
-        <div className="relative p-8">
+        <div className="relative p-8 md:p-10">
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
+            className="absolute top-4 right-4 z-10 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
           >
             ✕
           </button>
 
-          {/* Header */}
-          <div className="mb-6">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
-                {project.category}
-              </span>
-              <span
-                className="text-[0.55rem] font-orbitron tracking-wider px-2 py-0.5 rounded-full border"
-                style={{
-                  color: project.accentColor,
-                  borderColor: project.accentColor + "40",
-                  background: project.accentColor + "10",
-                }}
-              >
-                {project.status}
-              </span>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            {/* Left Column: Header, Stats, Actions */}
+            <div className="md:col-span-4 flex flex-col">
+              {/* Header */}
+              <div className="mb-6">
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
+                    {project.category}
+                  </span>
+                  <span
+                    className="text-[0.55rem] font-orbitron tracking-wider px-2 py-0.5 rounded-full border"
+                    style={{
+                      color: project.accentColor,
+                      borderColor: project.accentColor + "40",
+                      background: project.accentColor + "10",
+                    }}
+                  >
+                    {project.status}
+                  </span>
+                </div>
 
-            <h2
-              className="text-3xl font-bold font-orbitron mb-1"
-              style={{ color: project.accentColor }}
-            >
-              {project.name}
-            </h2>
-
-            <div
-              className="w-16 h-[2px] mt-3"
-              style={{
-                background: `linear-gradient(90deg, ${project.accentColor}, transparent)`,
-              }}
-            />
-          </div>
-
-          {/* Detailed description */}
-          <div className="mb-6">
-            <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-2">
-              OVERVIEW
-            </h3>
-            <div className="text-[var(--color-text-secondary)] leading-relaxed text-sm space-y-3">
-              {project.longDesc.split("\n\n").map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-          </div>
-
-          {/* Tech Stack */}
-          <div className="mb-6">
-            <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-3">
-              TECH STACK
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="text-[0.65rem] px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-secondary)] font-orbitron tracking-wider hover:border-accent/30 transition-colors duration-300"
+                <h2
+                  className="text-3xl sm:text-4xl font-bold font-orbitron mb-2 leading-tight"
+                  style={{ color: project.accentColor }}
                 >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
+                  {project.name}
+                </h2>
 
-          {/* Stats bar */}
-          <div className="grid grid-cols-3 gap-4 p-4 rounded-xl bg-surface border border-border-subtle mb-6">
-            <div className="text-center">
-              <span
-                className="text-lg font-bold font-orbitron"
-                style={{ color: project.accentColor }}
-              >
-                {project.tech.length}
-              </span>
-              <p className="text-[0.55rem] text-muted tracking-widest mt-1">
-                TECHNOLOGIES
-              </p>
-            </div>
-            <div className="text-center">
-              <span
-                className="text-lg font-bold font-orbitron"
-                style={{ color: project.accentColor }}
-              >
-                {project.status === "COMPLETED" ? "✓" : "⟳"}
-              </span>
-              <p className="text-[0.55rem] text-muted tracking-widest mt-1">
-                STATUS
-              </p>
-            </div>
-            <div className="text-center">
-              <span
-                className="text-lg font-bold font-orbitron"
-                style={{ color: project.accentColor }}
-              >
-                ★
-              </span>
-              <p className="text-[0.55rem] text-muted tracking-widest mt-1">
-                FEATURED
-              </p>
-            </div>
-          </div>
+                <div
+                  className="w-16 h-[2px] mt-4"
+                  style={{
+                    background: `linear-gradient(90deg, ${project.accentColor}, transparent)`,
+                  }}
+                />
+              </div>
 
-          {/* Action buttons */}
-          <div className="flex gap-3">
-            <motion.a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 h-11 rounded-lg border flex items-center justify-center gap-2 text-sm font-orbitron tracking-wider transition-all duration-300"
-              style={{
-                borderColor: project.accentColor + "40",
-                color: project.accentColor,
-                background: project.accentColor + "08",
-              }}
-              whileHover={{
-                scale: 1.02,
-                boxShadow: `0 0 20px ${project.accentColor}20`,
-              }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-              VIEW SOURCE
-            </motion.a>
+              {/* Stats bar */}
+              <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-surface border border-border-subtle mb-6">
+                <div className="text-center">
+                  <span
+                    className="text-lg font-bold font-orbitron"
+                    style={{ color: project.accentColor }}
+                  >
+                    {project.tech.length}
+                  </span>
+                  <p className="text-[0.55rem] text-muted tracking-widest mt-1">
+                    TECH
+                  </p>
+                </div>
+                <div className="text-center">
+                  <span
+                    className="text-lg font-bold font-orbitron"
+                    style={{ color: project.accentColor }}
+                  >
+                    {project.status === "COMPLETED" ? "✓" : "⟳"}
+                  </span>
+                  <p className="text-[0.55rem] text-muted tracking-widest mt-1">
+                    STATUS
+                  </p>
+                </div>
+              </div>
 
-            <motion.button
-              onClick={onClose}
-              className="px-6 h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              CLOSE
-            </motion.button>
+              {/* Action buttons Desktop */}
+              <div className="hidden md:flex flex-col gap-3 mt-auto pt-6 border-t border-border-subtle">
+                <motion.a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-11 rounded-lg border flex items-center justify-center gap-2 text-sm font-orbitron tracking-wider transition-all duration-300"
+                  style={{
+                    borderColor: project.accentColor + "40",
+                    color: project.accentColor,
+                    background: project.accentColor + "08",
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: `0 0 20px ${project.accentColor}20`,
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  VIEW SOURCE
+                </motion.a>
+
+                <motion.button
+                  onClick={onClose}
+                  className="w-full h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  CLOSE
+                </motion.button>
+              </div>
+            </div>
+
+            {/* Right Column: Descriptions & Tech */}
+            <div className="md:col-span-8 flex flex-col">
+              {/* Detailed description */}
+              <div className="mb-8">
+                <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-3">
+                  OVERVIEW
+                </h3>
+                <div className="text-[var(--color-text-secondary)] leading-relaxed text-sm sm:text-base space-y-4">
+                  {project.longDesc.split("\n\n").map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tech Stack */}
+              <div className="mb-0 md:mb-6">
+                <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-4">
+                  TECH STACK
+                </h3>
+                <div className="flex flex-wrap gap-2.5">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="text-[0.7rem] px-3 py-1.5 rounded-lg bg-surface border border-border-subtle text-[var(--color-text-secondary)] font-orbitron tracking-wider hover:border-accent/30 transition-colors duration-300"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action buttons Mobile */}
+              <div className="flex md:hidden gap-3 mt-8 pt-6 border-t border-border-subtle">
+                <motion.a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 h-11 rounded-lg border flex items-center justify-center gap-2 text-sm font-orbitron tracking-wider transition-all duration-300"
+                  style={{
+                    borderColor: project.accentColor + "40",
+                    color: project.accentColor,
+                    background: project.accentColor + "08",
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: `0 0 20px ${project.accentColor}20`,
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  SOURCE
+                </motion.a>
+
+                <motion.button
+                  onClick={onClose}
+                  className="flex-1 h-11 rounded-lg bg-surface border border-border-subtle text-muted text-sm font-orbitron tracking-wider hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  CLOSE
+                </motion.button>
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -282,21 +302,29 @@ function ProjectOverlay({ project, onClose }) {
 function ProjectCard({ project, index, onClick }) {
   return (
     <motion.div
-      className={`group relative p-6 rounded-xl bg-card border-t-2 ${project.accent} border border-border-subtle hover:bg-card-hover transition-all duration-500 overflow-hidden cursor-pointer`}
+      className={`group relative p-6 rounded-xl bg-card border-b-4 ${project.accent} border border-border-subtle hover:bg-card-hover hover:border-accent transition-all duration-500 overflow-hidden cursor-pointer`}
+      style={{ '--hover-color': project.accentColor + '40' }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -5, scale: 1.01, boxShadow: `0 10px 30px -10px ${project.accentColor}40` }}
       onClick={onClick}
     >
       {/* Category + click hint */}
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center justify-between mb-3">
         <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
           {project.category}
         </span>
-        <span className="text-[0.55rem] text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-orbitron tracking-wider">
-          CLICK TO EXPAND ↗
+        <span 
+          className="text-[0.55rem] font-orbitron tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 px-2 py-1 rounded-md border"
+          style={{ 
+            color: project.accentColor, 
+            borderColor: project.accentColor + '40', 
+            background: project.accentColor + '10' 
+          }}
+        >
+          MORE DETAILS ↗
         </span>
       </div>
 
