@@ -110,7 +110,7 @@ function ProjectOverlay({ project, onClose }) {
 
       {/* Modal content */}
       <motion.div
-        className={`relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${project.accent} border-border-subtle shadow-2xl`}
+        className={`relative w-full max-w-6xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${project.accent} border-border-subtle shadow-2xl`}
         initial={{ scale: 0.85, y: 40, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
         exit={{ scale: 0.9, y: 20, opacity: 0 }}
@@ -302,8 +302,8 @@ function ProjectOverlay({ project, onClose }) {
 function ProjectCard({ project, index, onClick }) {
   return (
     <motion.div
-      className={`group relative p-6 rounded-xl bg-card border-b-4 ${project.accent} border border-border-subtle hover:bg-card-hover hover:border-accent transition-all duration-500 overflow-hidden cursor-pointer`}
-      style={{ '--hover-color': project.accentColor + '40' }}
+      className={`card-glow-corners group relative p-6 rounded-xl bg-card border-b-4 ${project.accent} border border-border-subtle hover:bg-card-hover hover:border-accent transition-all duration-500 overflow-hidden cursor-pointer`}
+      style={{ '--card-accent': project.accentColor }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -311,20 +311,13 @@ function ProjectCard({ project, index, onClick }) {
       whileHover={{ y: -5, scale: 1.01, boxShadow: `0 10px 30px -10px ${project.accentColor}40` }}
       onClick={onClick}
     >
-      {/* Category + click hint */}
+      {/* Glowing corner brackets */}
+      <div className="corner-glow"><span /><span /><span /><span /></div>
+
+      {/* Category */}
       <div className="flex items-center justify-between mb-3">
         <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
           {project.category}
-        </span>
-        <span 
-          className="text-[0.55rem] font-orbitron tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 px-2 py-1 rounded-md border"
-          style={{ 
-            color: project.accentColor, 
-            borderColor: project.accentColor + '40', 
-            background: project.accentColor + '10' 
-          }}
-        >
-          MORE DETAILS ↗
         </span>
       </div>
 
@@ -341,37 +334,35 @@ function ProjectCard({ project, index, onClick }) {
         {project.desc}
       </p>
 
-      {/* Tech Stack */}
-      <div className="flex flex-wrap gap-2">
-        {project.tech.slice(0, 3).map((t) => (
-          <span
-            key={t}
-            className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-[var(--color-text-tertiary)] font-orbitron tracking-wider"
-          >
-            {t}
-          </span>
-        ))}
-        {project.tech.length > 3 && (
-          <span className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-muted font-orbitron tracking-wider">
-            +{project.tech.length - 3}
-          </span>
-        )}
-      </div>
+      {/* Tech Stack + More Details */}
+      <div className="flex items-end justify-between gap-4">
+        <div className="flex flex-wrap gap-2">
+          {project.tech.slice(0, 3).map((t) => (
+            <span
+              key={t}
+              className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-[var(--color-text-tertiary)] font-orbitron tracking-wider"
+            >
+              {t}
+            </span>
+          ))}
+          {project.tech.length > 3 && (
+            <span className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-muted font-orbitron tracking-wider">
+              +{project.tech.length - 3}
+            </span>
+          )}
+        </div>
 
-      {/* Corner decoration */}
-      <div className="absolute bottom-0 right-0 w-16 h-16 opacity-5 group-hover:opacity-10 transition-opacity duration-300">
-        <svg
-          viewBox="0 0 100 100"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1"
-          className="text-accent"
+        {/* More Details button */}
+        <span
+          className="shrink-0 text-xs font-orbitron tracking-wider flex items-center gap-1.5 px-3 py-1.5 rounded-lg border opacity-60 group-hover:opacity-100 transition-all duration-300"
+          style={{
+            color: project.accentColor,
+            borderColor: project.accentColor + '40',
+            background: project.accentColor + '10'
+          }}
         >
-          <circle cx="50" cy="50" r="40" />
-          <circle cx="50" cy="50" r="25" />
-          <line x1="50" y1="5" x2="50" y2="95" />
-          <line x1="5" y1="50" x2="95" y2="50" />
-        </svg>
+          MORE DETAILS ↗
+        </span>
       </div>
     </motion.div>
   );

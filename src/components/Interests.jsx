@@ -78,14 +78,16 @@ export default function Interests() {
                 {interests.map((interest, i) => (
                     <motion.div
                         key={i}
-                        className={`group relative p-5 rounded-xl bg-card border-b-4 ${interest.accent} border border-border-subtle hover:bg-card-hover hover:border-accent transition-all duration-500 overflow-hidden cursor-default`}
-                        style={{ '--hover-color': `var(--color-${interest.accent.replace('border-', '')})` }}
+                        className={`card-glow-corners group relative p-5 rounded-xl bg-card border-b-4 ${interest.accent} border border-border-subtle hover:bg-card-hover hover:border-accent transition-all duration-500 overflow-hidden cursor-default`}
+                        style={{ '--card-accent': `var(--color-${interest.accent.replace('border-', '')})` }}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.5, delay: i * 0.1 }}
-                        whileHover={{ y: -5, scale: 1.01, boxShadow: `0 10px 30px -10px var(--hover-color)` }}
+                        whileHover={{ y: -5, scale: 1.01, boxShadow: `0 10px 30px -10px var(--card-accent)` }}
                     >
+                        {/* Glowing corner brackets */}
+                        <div className="corner-glow"><span /><span /><span /><span /></div>
                         {/* Accent bg glow */}
                         {/* <div className={`absolute inset-0 ${interest.bgAccent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl`} /> */}
 

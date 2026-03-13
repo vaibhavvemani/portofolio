@@ -100,7 +100,7 @@ function AchievementOverlay({ achievement, onClose }) {
 
             {/* Modal content */}
             <motion.div
-                className={`relative w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${achievement.accent} border-border-subtle shadow-2xl`}
+                className={`relative w-full max-w-6xl max-h-[85vh] overflow-y-auto rounded-2xl bg-background border ${achievement.accent} border-border-subtle shadow-2xl`}
                 initial={{ scale: 0.85, y: 40, opacity: 0 }}
                 animate={{ scale: 1, y: 0, opacity: 1 }}
                 exit={{ scale: 0.9, y: 20, opacity: 0 }}
@@ -267,8 +267,8 @@ function AchievementOverlay({ achievement, onClose }) {
 function AchievementCard({ achievement, index, onClick }) {
     return (
         <motion.div
-            className={`group relative p-6 rounded-xl bg-card border-b-4 ${achievement.accent} border border-border-subtle hover:border-accent transition-all duration-500 hover:bg-card-hover cursor-pointer overflow-hidden ${achievement.glow}`}
-            style={{ '--hover-color': achievement.accentColor + '40' }}
+            className={`card-glow-corners group relative p-6 rounded-xl bg-card border-b-4 ${achievement.accent} border border-border-subtle hover:border-accent transition-all duration-500 hover:bg-card-hover cursor-pointer overflow-hidden ${achievement.glow}`}
+            style={{ '--card-accent': achievement.accentColor }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -276,68 +276,62 @@ function AchievementCard({ achievement, index, onClick }) {
             whileHover={{ y: -5, scale: 1.01, boxShadow: `0 10px 30px -10px ${achievement.accentColor}40` }}
             onClick={onClick}
         >
-            {/* Type Badge & Click hint */}
-            <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                    <span className="text-2xl">{achievement.icon}</span>
-                    <span className="text-[0.65rem] font-orbitron tracking-widest text-muted">
-                        {achievement.type}
-                    </span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <span 
-                        className="text-[0.55rem] font-orbitron tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 px-2 py-1 rounded-md border"
-                        style={{ 
-                            color: achievement.accentColor, 
-                            borderColor: achievement.accentColor + '40', 
-                            background: achievement.accentColor + '10' 
-                        }}
-                    >
-                        MORE DETAILS ↗
-                    </span>
-                    <span className="text-[0.65rem] font-orbitron tracking-wider px-2 py-1 rounded-full border"
-                        style={{
-                            color: achievement.accentColor,
-                            borderColor: achievement.accentColor + "40",
-                            background: achievement.accentColor + "10",
-                        }}>
-                        {achievement.status}
-                    </span>
-                </div>
+            {/* Glowing corner brackets */}
+            <div className="corner-glow"><span /><span /><span /><span /></div>
+
+            {/* Type label */}
+            <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">{achievement.icon}</span>
+                <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
+                    {achievement.type}
+                </span>
             </div>
 
-            {/* Title & Description */}
-            <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2 transition-colors duration-300 group-hover:text-opacity-80">
+            {/* Title */}
+            <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2 transition-colors duration-300 group-hover:text-accent font-orbitron">
                 {achievement.title}
             </h3>
 
+            {/* Divider */}
+            <div className="w-12 h-[1px] bg-border-subtle mb-3" />
+
+            {/* Description */}
             <p className="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
                 {achievement.description}
             </p>
 
-            {/* Tags preview */}
-            {achievement.tags && (
-                <div className="flex flex-wrap gap-2">
-                    {achievement.tags.slice(0, 3).map((t) => (
-                        <span
-                            key={t}
-                            className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-[var(--color-text-tertiary)] font-orbitron tracking-wider"
-                        >
-                            {t}
-                        </span>
-                    ))}
-                    {achievement.tags.length > 3 && (
-                        <span className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-muted font-orbitron tracking-wider">
-                            +{achievement.tags.length - 3}
-                        </span>
-                    )}
-                </div>
-            )}
+            {/* Tags + More Details */}
+            <div className="flex items-end justify-between gap-4">
+                {achievement.tags && (
+                    <div className="flex flex-wrap gap-2">
+                        {achievement.tags.slice(0, 3).map((t) => (
+                            <span
+                                key={t}
+                                className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-[var(--color-text-tertiary)] font-orbitron tracking-wider"
+                            >
+                                {t}
+                            </span>
+                        ))}
+                        {achievement.tags.length > 3 && (
+                            <span className="text-[0.6rem] px-2 py-1 rounded-full bg-surface border border-border-subtle text-muted font-orbitron tracking-wider">
+                                +{achievement.tags.length - 3}
+                            </span>
+                        )}
+                    </div>
+                )}
 
-            {/* Corner decoration */}
-            <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-border-subtle rounded-tr-xl opacity-30 group-hover:opacity-60 transition-all duration-300" />
-            <div className="absolute top-0 right-0 w-8 h-8 rounded-tr-xl transition-all duration-300 group-hover:bg-gradient-to-bl opacity-0 group-hover:opacity-20"
-                style={{ backgroundImage: `linear-gradient(to bottom left, ${achievement.accentColor}, transparent)` }} />
+                {/* More Details button */}
+                <span
+                    className="shrink-0 text-xs font-orbitron tracking-wider flex items-center gap-1.5 px-3 py-1.5 rounded-lg border opacity-60 group-hover:opacity-100 transition-all duration-300"
+                    style={{
+                        color: achievement.accentColor,
+                        borderColor: achievement.accentColor + '40',
+                        background: achievement.accentColor + '10'
+                    }}
+                >
+                    MORE DETAILS ↗
+                </span>
+            </div>
         </motion.div>
     );
 }
