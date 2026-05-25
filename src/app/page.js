@@ -3,6 +3,7 @@ import Profile_photo from "@/components/Profile_photo";
 import Profile_about from "@/components/Profile_about";
 import RacingNav from "@/components/RacingNav";
 import About_me from "@/components/About_me";
+import Experience from "@/components/Experience";
 import Achievements from "@/components/Achievements";
 import Projects from "@/components/Projects";
 import Interests from "@/components/Interests";
@@ -34,6 +35,9 @@ export default function Home() {
 
         {/* About Section */}
         <About_me />
+
+        {/* Experience / Race Log Section */}
+        <Experience />
 
         {/* Achievements Section */}
         <Achievements />

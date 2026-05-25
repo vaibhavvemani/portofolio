@@ -5,45 +5,45 @@ import { AnimatePresence } from "motion/react";
 
 const projects = [
   {
-    name: "Word Lens",
-    category: "COMPUTER VISION",
-    desc: "Point at a word with a pen, get its definition read aloud. Built because Shakespeare shouldn't require a second browser tab.",
-    longDesc: "I was reading Shakespeare — as one does when they're trying to feel cultured — and I was Googling a word every other line. At some point I thought, what if I could just point at a word and hear what it means? So I built that.\n\nWorked with a team of 3. We used YOLO and EasyOCR (tested a bunch of other models too) to detect and extract the word being pointed at, ran NLP to understand context, and then fed it to an AI to pull a context-aware definition. The whole pipeline runs in real-time, which was harder than it sounds.\n\nThe trickiest part was getting the pointing detection right — turns out pens at weird angles in bad lighting are a nightmare for computer vision. But we got it working well enough that we filed a patent for it. Still one of my favorite \"what if\" projects that actually became a real thing.",
-    tech: ["Python", "YOLO", "EasyOCR", "NLP", "Flask"],
+    name: "WordLens",
+    category: "COMPUTER VISION / NLP",
+    desc: "AI-powered reading assistant using OCR and NLP. Point at a word with a pen to get context-aware definitions. Patent published by the India Patent Office.",
+    longDesc: "WordLens is a real-time reading comprehension aid designed to assist users with text analysis. By pointing at a word (e.g., with a pen), the system extracts the text and reads the definition aloud, eliminating the need to look up words in separate tabs.\n\nWe engineered a word-level analysis pipeline using YOLO for pointing detection and EasyOCR for text extraction. It processes the context surrounding the word using NLP, offering pronunciation support and contextual definitions. Our reading aid was successfully published as a patent with the India Patent Office (App. No. 202541122407 A).",
+    tech: ["Python", "PyTorch", "OpenCV", "YOLO", "EasyOCR", "NLP", "Flask"],
     github: "https://github.com/vaibhavvemani/Word-Lens",
     accent: "border-accent",
     accentColor: "#00FF66",
     status: "PATENTED",
   },
   {
-    name: "Bee Safe",
-    category: "ML / IoT",
-    desc: "AI-powered bee colony guardian — detects threats, predicts health from sound, and alerts beekeepers. Got a ₹10L government grant. Published a research paper.",
-    longDesc: "This one started on a college excursion. We met a team doing bee conservation work, and they painted a pretty grim picture — bee populations are plummeting and there's almost zero tech in the space. I went home, did my own research, and yeah, they were right. So we decided to do something about it.\n\nWe collaborated with apiculture professionals, visited actual beekeeping grounds, and applied for a government grant — and got ₹10 Lakh. Built our own dataset of bee threats (wasps, hornets, moths) since most images we found were unlabeled. With a 4-person team and thousands of images, we built a segmentation pipeline to auto-label bounding boxes. It worked... okay. Not perfectly, but it saved us from labeling everything by hand.\n\nAlso built a colony health prediction model using sound data from 4 hives — classifying Healthy, Moderate, Unhealthy, and Queenless colonies. The model worked almost too well at first. Turned out it was overfitting. Classic. It failed hard on real-time data, which was a humbling lesson in the gap between a Jupyter notebook and the real world.\n\nWe still shipped a working backend and edge alert system for beekeepers, and published a research paper on the whole thing. Not every piece worked perfectly, but the bees are slightly safer because of it. I'll take that.",
-    tech: ["Python", "TensorFlow", "IoT", "Audio ML", "Edge Computing"],
+    name: "BeeSafe",
+    category: "ML / IOT",
+    desc: "AI-powered bee colony guardian — detects wasp/hornet predators, predicts hive health from sound, and alerts beekeepers. Recognised at national level with a ₹10L government grant.",
+    longDesc: "This project addresses the alarming decline of honeybee colonies, which face threats from predators like wasps, hornets, and moths. I worked with apiculture experts to build a real-time camera monitoring system that achieves 84% detection accuracy.\n\nTo automate dataset preparation, our 4-person team built a segmentation pipeline to auto-label bounding boxes for thousands of threat images. Additionally, I developed a CNN-BiLSTM model for real-time bioacoustic threat detection. The model handles continuous hive audio streams by implementing sliding window buffering and post-processing smoothing to predict hive health (Healthy, Moderate, Unhealthy, Queenless). The project was recognized nationally and awarded a ₹10 Lakh (approx. €11,000) Government Research Grant, with a patent filed for the technology.",
+    tech: ["Python", "TensorFlow", "PyTorch", "CNN-BiLSTM", "OpenCV", "IoT"],
     github: "https://github.com/vaibhavvemani/apiculture_backend",
     accent: "border-accent-yellow",
     accentColor: "#FFB800",
-    status: "PUBLISHED",
+    status: "PATENT FILED",
   },
   {
-    name: "Grounded",
-    category: "DEV TOOLS",
-    desc: "Upload code, get auto-generated tests. Upload docs, ask questions via RAG. Born from the pain of writing unit tests by hand.",
-    longDesc: "Early in my engineering days, I was building a backend for a client and decided to be responsible and write tests for everything. Except writing tests is genuinely one of the most tedious things in software development. After the third test file, I thought: what if I just upload a function and it generates tests for me?\n\nSo I built Grounded — you upload a file or function, pick your preferred language, and it auto-generates test cases. Used a compiler-like system to parse code structure and AI APIs to generate meaningful tests. Not boilerplate filler — actual tests that understand what the code is supposed to do.\n\nI also wanted to learn RAG at the time, so I rolled that into the same project. Devs can upload documentation (PDFs or URLs) and ask questions about it using retrieval-augmented generation. Built the whole thing with LangChain, Next.js, and a bunch of AI tooling.\n\nIs it perfect? No. But it saves real time, and it taught me more about RAG pipelines than any tutorial could have.",
-    tech: ["LangChain", "Next.js", "RAG", "AI APIs", "Compilers"],
-    github: "https://github.com/vaibhavvemani/grounded-api",
+    name: "Zen.AI",
+    category: "AI / SAAS",
+    desc: "SaaS placement preparation portal for universities. Features proctored testing, custom AI interviewers, calendar schedules, and peer forums.",
+    longDesc: "Zen.AI is an end-to-end SaaS placement preparation portal built specifically for universities, recruitment agencies, and student partners to modernize the career readiness pipeline.\n\nThe core features include an AI-proctored test-taking module and an AI mock interview assistant that conducts real-time interviews customized to the candidate's resume and target job description. The platform includes full product infrastructure, including an automated email system, candidate calendar scheduling, course material distribution, and peer discussions.",
+    tech: ["Next.js", "React", "Node.js", "MongoDB", "AI APIs", "REST API"],
+    github: "https://github.com/vaibhavvemani",
     accent: "border-accent-blue",
     accentColor: "#00A3FF",
     status: "COMPLETED",
   },
   {
-    name: "Revlift",
-    category: "WEB APP",
-    desc: "A clean, all-in-one car wiki that actually looks good. Because checking 5 different terrible websites for car stats is unacceptable.",
-    longDesc: "I'm a car guy. And looking up car stats used to mean visiting 5 different websites, all with UIs that looked like they were designed in 2006 by someone who hated users. I wanted one place where everything — specs, comparisons, the works — was presented cleanly and at a glance.\n\nBuilt Revlift with Svelte (which I was fairly new to at the time) and Supabase. It was one of my first real end-to-end websites, and I learned a lot about what it takes to ship something complete — from database design to responsive layouts to making the UI feel fast.\n\nI'm fully aware that AI-powered browsers are slowly making this kind of project redundant. You can just ask a question and get the answer now. But honestly? The website still looks cool, the build taught me a ton, and I stand by it.",
-    tech: ["Svelte", "Supabase", "REST API", "CSS"],
-    github: "https://github.com/vaibhavvemani/Revlift",
+    name: "Grounded",
+    category: "DEV TOOLS / AI",
+    desc: "Upload code, get auto-generated tests. Upload docs, ask questions via RAG. Born from the pain of writing unit tests by hand.",
+    longDesc: "Early in my engineering days, I was building a backend for a client and decided to be responsible and write tests for everything. Except writing tests is genuinely one of the most tedious things in software development. After the third test file, I thought: what if I just upload a function and it generates tests for me?\n\nSo I built Grounded — you upload a file or function, pick your preferred language, and it auto-generates test cases. Used a compiler-like system to parse code structure and AI APIs to generate meaningful tests. Not boilerplate filler — actual tests that understand what the code is supposed to do.\n\nI also wanted to learn RAG at the time, so I rolled that into the same project. Devs can upload documentation (PDFs or URLs) and ask questions about it using retrieval-augmented generation. Built the whole thing with LangChain, Next.js, and a bunch of AI tooling.",
+    tech: ["LangChain", "Next.js", "RAG", "AI APIs", "Compilers"],
+    github: "https://github.com/vaibhavvemani/grounded-api",
     accent: "border-accent-red",
     accentColor: "#FF3333",
     status: "COMPLETED",
@@ -53,26 +53,26 @@ const projects = [
 // Additional projects shown when "View More" is expanded
 const moreProjects = [
   {
+    name: "Revlift",
+    category: "WEB APP",
+    desc: "A clean, all-in-one car specs wiki that actually looks good. Built with Svelte and Supabase.",
+    longDesc: "I'm a car guy. And looking up car stats used to mean visiting 5 different websites, all with UIs that looked like they were designed in 2006 by someone who hated users. I wanted one place where everything — specs, comparisons, the works — was presented cleanly and at a glance.\n\nBuilt Revlift with Svelte (which I was fairly new to at the time) and Supabase. It was one of my first real end-to-end websites, and I learned a lot about what it takes to ship something complete — from database design to responsive layouts to making the UI feel fast.",
+    tech: ["Svelte", "Supabase", "REST API", "Tailwind CSS"],
+    github: "https://github.com/vaibhavvemani/Revlift",
+    accent: "border-accent-blue",
+    accentColor: "#00A3FF",
+    status: "COMPLETED",
+  },
+  {
     name: "NewsSense",
     category: "AI / FINTECH",
-    desc: "Ask why a stock tanked today, get an answer backed by real news. Hackathon project. Didn't win. Still proud.",
+    desc: "Scrapes financial news sources daily to explain stock moves on demand using LangChain vector similarity search.",
     longDesc: "Built this at a hackathon. The problem was simple: the stock market reacts to news every single day, but nobody has time to read all of it. When someone asks \"why is QQQ down today?\" — Google gives you 47 articles. We wanted one clear answer, backed by sources.\n\nOur approach: we scraped major news sources daily, summarized the articles using AI before storing them (keeps the vector database lean and fast), then used LangChain similarity search to surface the most relevant articles for any given stock query. Type in a ticker, get a news-grounded explanation of what's moving it.\n\nWe didn't win the hackathon. But the pipeline worked, the demo was solid, and I learned a ton about building with vector databases under time pressure. Sometimes the best projects are the ones that don't win — you build them for the thrill, not the trophy.",
     tech: ["LangChain", "Vector DB", "Web Scraping", "AI APIs", "Python"],
     github: "https://github.com/vaibhavvemani",
     accent: "border-accent",
     accentColor: "#00FF66",
     status: "COMPLETED",
-  },
-  {
-    name: "HireLens",
-    category: "FULL STACK",
-    desc: "A full university services platform — attendance, placements, AI insights, the works. Built it end to end. Never got deployed. The lesson stuck.",
-    longDesc: "Our college had a placement portal that was… rough. Bad UI, limited features, clearly built by someone who never asked a student what they actually needed. My team and I decided to think bigger — what if we built a full university services platform?\n\nSo we did. Attendance tracking, class schedules, lecture material, practice exams, placement drives, a resume builder, AI-powered insights on interview progress, notice boards, and a college calendar. The full thing, end to end. It was probably the most ambitious project I've worked on in terms of scope.\n\nThen, right at the finish line, management changed. The new team wasn't interested. The project never got deployed. That stung.\n\nBut here's the thing — building something at that scale taught me more about infrastructure, product thinking, and teamwork than any course ever could. The code might be sitting in a repo collecting dust, but the education from it? That lives on. Sometimes you build things that never ship, and that's still worth it.",
-    tech: ["React", "Node.js", "MongoDB", "AI APIs", "REST API"],
-    github: "https://github.com/vaibhavvemani",
-    accent: "border-accent-yellow",
-    accentColor: "#FFB800",
-    status: "SHELVED",
   },
 ];
 
@@ -302,7 +302,7 @@ function ProjectOverlay({ project, onClose }) {
 function ProjectCard({ project, index, onClick }) {
   return (
     <motion.div
-      className={`card-glow-corners group relative p-6 rounded-xl bg-card border-b-4 ${project.accent} border border-border-subtle hover:bg-card-hover hover:border-accent transition-all duration-500 overflow-hidden cursor-pointer`}
+      className={`card-glow-corners group relative p-6 rounded-xl bg-card border-b-4 ${project.accent} border border-border-subtle hover:bg-card-hover hover:border-[var(--card-accent)] transition-all duration-500 overflow-hidden cursor-pointer`}
       style={{ '--card-accent': project.accentColor }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -322,7 +322,7 @@ function ProjectCard({ project, index, onClick }) {
       </div>
 
       {/* Project Name */}
-      <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mt-1 mb-3 group-hover:text-accent transition-colors duration-300 font-orbitron">
+      <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mt-1 mb-3 group-hover:text-[var(--card-accent)] transition-colors duration-300 font-orbitron">
         {project.name}
       </h3>
 
@@ -387,7 +387,7 @@ export default function Projects() {
         transition={{ duration: 0.5 }}
         className="mb-12"
       >
-        <span className="section-label">// 04</span>
+        <span className="section-label">// 05</span>
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <h2 className="section-title">Garage</h2>

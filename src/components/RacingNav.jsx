@@ -5,6 +5,7 @@ import * as motion from "motion/react-client";
 const sections = [
   { id: "home", label: "HOME", icon: "⌂" },
   { id: "about", label: "ABOUT", icon: "◈" },
+  { id: "experience", label: "RACE LOG", icon: "◎" },
   { id: "achievements", label: "TROPHIES", icon: "◆" },
   { id: "garage", label: "GARAGE", icon: "▣" },
   { id: "interests", label: "PIT LANE", icon: "◉" },

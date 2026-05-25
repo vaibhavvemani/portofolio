@@ -67,7 +67,7 @@ export default function Interests() {
                 transition={{ duration: 0.5 }}
                 className="mb-12"
             >
-                <span className="section-label">// 05</span>
+                <span className="section-label">// 06</span>
                 <h2 className="section-title">Pit Lane</h2>
                 <p className="text-muted text-sm mt-1">What fuels me outside of work</p>
                 <div className="w-20 h-[2px] bg-gradient-to-r from-accent-yellow to-transparent mt-2" />
@@ -78,7 +78,7 @@ export default function Interests() {
                 {interests.map((interest, i) => (
                     <motion.div
                         key={i}
-                        className={`card-glow-corners group relative p-5 rounded-xl bg-card border-b-4 ${interest.accent} border border-border-subtle hover:bg-card-hover hover:border-accent transition-all duration-500 overflow-hidden cursor-default`}
+                        className={`card-glow-corners group relative p-5 rounded-xl bg-card border-b-4 ${interest.accent} border border-border-subtle hover:bg-card-hover hover:border-[var(--card-accent)] transition-all duration-500 overflow-hidden cursor-default`}
                         style={{ '--card-accent': `var(--color-${interest.accent.replace('border-', '')})` }}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ export default function Interests() {
                             <div className="flex items-center gap-3 mb-3">
                                 <span className="text-3xl">{interest.emoji}</span>
                                 <div>
-                                    <h3 className="font-bold text-[var(--color-text-primary)] text-lg group-hover:text-accent transition-colors duration-300">
+                                    <h3 className="font-bold text-[var(--color-text-primary)] text-lg group-hover:text-[var(--card-accent)] transition-colors duration-300">
                                         {interest.title}
                                     </h3>
                                     <span className="text-[0.6rem] font-orbitron tracking-widest text-muted">

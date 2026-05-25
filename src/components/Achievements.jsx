@@ -5,63 +5,78 @@ import { AnimatePresence } from "motion/react";
 
 const achievements = [
     {
-        type: "PATENT",
-        icon: "🏆",
-        title: "Enhanced Apiculture Threat Detection System",
-        description:
-            "Indian patent filed for an AI-powered system that protects beehives from predators using machine learning.",
-        longDesc:
-            "A comprehensive overview of the patent, including the background of the invention, the specific technical problem it addresses, the novel methodologies proposed, and the potential impact on the industry. This section provides an in-depth look at the IP generated.",
-        tags: ["Innovation", "Hardware", "Algorithm", "Pending"],
-        status: "Filed 2025",
-        accent: "border-accent-yellow",
-        accentColor: "#FFB800",
-        glow: "shadow-[0_0_15px_rgba(255,184,0,0.1)]",
-        link: "#",
-    },
-    {
-        type: "RESEARCH",
-        icon: "📄",
-        title: "Apiculture Threat Detection and Health Monitoring System",
-        description:
-            "Research paper published at IEEE 2026 - a machine learning based apiculture threat and health monitoring system",
-        longDesc:
-            "Detailed summary covering the research thesis, experimental setup, data collection methodologies, and the final results. This includes the comparative analysis with existing solutions and the theoretical implications of the work.",
-        tags: ["Machine Learning", "Data Science", "Published", "IEEE"],
-        status: "Published",
-        accent: "border-accent-blue",
-        accentColor: "#00A3FF",
-        glow: "shadow-[0_0_15px_rgba(0,163,255,0.1)]",
-        link: "#",
-    },
-    {
         type: "GRANT",
         icon: "💰",
         title: "Government Research Grant",
         description:
-            "Received a government research grant for the development of an AI-powered system that protects beehives from predators using machine learning.",
+            "Awarded a ₹10L (≈ €11,000) research grant by the Indian Government for our AI-powered apiculture conservation project.",
         longDesc:
-            "An outline of the funding received, the purpose of the grant, and the expected milestones. Details the selection process, the competitive nature of the award, and the future work it enables.",
-        tags: ["Funding", "Research", "Excellence"],
-        status: "2024",
+            "Our project, BeeSafe, was recognized at the national level and awarded a prestigious research grant of ₹10 Lakh (approx. €11,000) by the Indian Government. This funding enabled us to collaborate with professional apiaries, design physical IoT monitoring nodes, and collect a large custom dataset of honeybee threats like wasps, hornets, and moths.",
+        tags: ["Funding", "Research", "Govt of India", "IoT"],
+        status: "Awarded 2024",
         accent: "border-accent",
         accentColor: "#00FF66",
         glow: "shadow-[0_0_15px_rgba(0,255,102,0.1)]",
         link: "#",
     },
     {
-        type: "RESEARCH",
-        icon: "📄",
-        title: "Virtual Boundary Detection for Industrial Safety",
+        type: "PATENT",
+        icon: "🏆",
+        title: "Bee Threat Detection Patent",
         description:
-            "Conference paper presented at ICICC 2025 - a machine learning based safety zone enforement",
+            "Patent filed for an AI-powered system that protects beehives from predators using computer vision and audio ML (App No. 202441071459 A).",
         longDesc:
-            "Detailed summary covering the research thesis, experimental setup, data collection methodologies, and the final results. This includes the comparative analysis with existing solutions and the theoretical implications of the work.",
-        tags: ["Machine Learning", "Data Science", "Published", "IEEE"],
-        status: "Published",
+            "Filed a patent with the Indian Patent Office (Application No. 202441071459 A) for a novel smart apiculture guardian. The system uses a real-time camera setup to identify external predators and a CNN-BiLSTM network to monitor internal hive acoustics, alerting keepers about hive anomalies.",
+        tags: ["Patent", "Computer Vision", "Audio ML", "Apiculture"],
+        status: "Filed 2024",
+        accent: "border-accent-yellow",
+        accentColor: "#FFB800",
+        glow: "shadow-[0_0_15px_rgba(255,184,0,0.1)]",
+        link: "#",
+    },
+    {
+        type: "PATENT",
+        icon: "🏆",
+        title: "WordLens Reading System Patent",
+        description:
+            "Patent published for an AI-assisted reading aid using OCR and context-aware NLP pipelines (App No. 202561122407 A).",
+        longDesc:
+            "Filed and published a patent with the Indian Patent Office (Application No. 202561122407 A / 202541122407 A) for WordLens, our AI-powered reading aid. The invention covers a system that tracks a pointing device on physical text, extracts the target word using YOLO and EasyOCR, and runs NLP to read pronunciation and context-aware definitions aloud.",
+        tags: ["Patent", "NLP", "OCR", "Accessibility"],
+        status: "Published 2025",
         accent: "border-accent-blue",
         accentColor: "#00A3FF",
         glow: "shadow-[0_0_15px_rgba(0,163,255,0.1)]",
+        link: "#",
+    },
+    {
+        type: "RESEARCH",
+        icon: "📄",
+        title: "Apiculture Health Monitoring System",
+        description:
+            "Research paper published at IEEE 2026 detailing our machine learning based apiculture health monitoring and threat detection system.",
+        longDesc:
+            "Co-authored and published a research paper in IEEE (2026) presenting our work on BeeSafe. The paper details our dual-model system, the custom image dataset of hive predators, and our comparative analysis of machine learning algorithms for classifying hive audio profiles.",
+        tags: ["Research", "Machine Learning", "IEEE", "IoT"],
+        status: "Published 2026",
+        accent: "border-accent-blue",
+        accentColor: "#00A3FF",
+        glow: "shadow-[0_0_15px_rgba(0,163,255,0.1)]",
+        link: "#",
+    },
+    {
+        type: "RESEARCH",
+        icon: "📄",
+        title: "Virtual Boundary Detection for Safety",
+        description:
+            "Research paper presented and published at ICICC 2025 detailing a machine learning model for virtual safety boundary enforcement.",
+        longDesc:
+            "Co-authored and presented a conference paper at the International Conference on Innovative Computing and Communication (ICICC 2025). The research proposes a computer vision system that monitors industrial sites in real time, detecting safety zone violations and alerting workers.",
+        tags: ["Research", "Computer Vision", "Workplace Safety", "ICICC"],
+        status: "Published 2025",
+        accent: "border-accent-red",
+        accentColor: "#FF3333",
+        glow: "shadow-[0_0_15px_rgba(255,51,51,0.1)]",
         link: "#",
     },
 ];
@@ -267,7 +282,7 @@ function AchievementOverlay({ achievement, onClose }) {
 function AchievementCard({ achievement, index, onClick }) {
     return (
         <motion.div
-            className={`card-glow-corners group relative p-6 rounded-xl bg-card border-b-4 ${achievement.accent} border border-border-subtle hover:border-accent transition-all duration-500 hover:bg-card-hover cursor-pointer overflow-hidden ${achievement.glow}`}
+            className={`card-glow-corners group relative p-6 rounded-xl bg-card border-b-4 ${achievement.accent} border border-border-subtle hover:border-[var(--card-accent)] transition-all duration-500 hover:bg-card-hover cursor-pointer overflow-hidden ${achievement.glow}`}
             style={{ '--card-accent': achievement.accentColor }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -288,7 +303,7 @@ function AchievementCard({ achievement, index, onClick }) {
             </div>
 
             {/* Title */}
-            <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2 transition-colors duration-300 group-hover:text-accent font-orbitron">
+            <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2 transition-colors duration-300 group-hover:text-[var(--card-accent)] font-orbitron">
                 {achievement.title}
             </h3>
 
@@ -352,7 +367,7 @@ export default function Achievements() {
                 transition={{ duration: 0.5 }}
                 className="mb-12"
             >
-                <span className="section-label">// 03</span>
+                <span className="section-label">// 04</span>
                 <h2 className="section-title">Trophy Cabinet</h2>
                 <div className="w-20 h-[2px] bg-gradient-to-r from-accent-yellow to-transparent mt-2" />
             </motion.div>

@@ -22,7 +22,7 @@ export default function Contact() {
         transition={{ duration: 0.5 }}
         className="mb-12"
       >
-        <span className="section-label">// 06</span>
+        <span className="section-label">// 07</span>
         <h2 className="section-title">Pit Stop</h2>
         <p className="text-muted text-sm mt-1">Open channel — send a transmission</p>
         <div className="w-20 h-[2px] bg-gradient-to-r from-accent-red to-transparent mt-2" />
