@@ -10,6 +10,8 @@ const interests = [
         description: "Elden Ring, Dark Souls, and anything that makes me rage quit then come back for more. Currently trying not to break my controller.",
         accent: "border-accent",
         bgAccent: "bg-accent/5",
+        tags: ["Elden Ring", "Dark Souls", "No-hit runs"],
+        level: "MAINLINE",
     },
     {
         emoji: "🏎️",
@@ -18,6 +20,8 @@ const interests = [
         description: "Nothing beats the thrill of watching cars go vroom at 300 km/h. Strategy, engineering, and pure speed — F1 is the ultimate sport.",
         accent: "border-accent-red",
         bgAccent: "bg-accent-red/5",
+        tags: ["Strategy", "300 km/h", "Race weekends"],
+        level: "MAINLINE",
     },
     {
         emoji: "🏍️",
@@ -26,6 +30,8 @@ const interests = [
         description: "Leaning at impossible angles at 350 km/h on two wheels. MotoGP riders are built different. Pure adrenaline on every corner.",
         accent: "border-accent-yellow",
         bgAccent: "bg-accent-yellow/5",
+        tags: ["350 km/h", "Lean angle", "Adrenaline"],
+        level: "SIDE QUEST",
     },
     {
         emoji: "🤖",
@@ -34,6 +40,8 @@ const interests = [
         description: "From neural networks to LLMs, I'm fascinated by how machines learn. Currently deep-diving into LangChain and agentic AI systems.",
         accent: "border-accent-blue",
         bgAccent: "bg-accent-blue/5",
+        tags: ["LangChain", "Agentic AI", "LLMs"],
+        level: "GRINDING",
     },
     {
         emoji: "🛠️",
@@ -42,6 +50,8 @@ const interests = [
         description: "Web apps, CLI tools, ML models, bots — if it can be coded, I've probably tried to build it at 2 AM fueled by coffee.",
         accent: "border-accent",
         bgAccent: "bg-accent/5",
+        tags: ["Web apps", "CLI tools", "2 AM commits"],
+        level: "MAINLINE",
     },
     {
         emoji: "📚",
@@ -50,6 +60,8 @@ const interests = [
         description: "Can't stop, won't stop learning new things. Currently leveling up in distributed systems, cloud architecture, and low-level programming.",
         accent: "border-accent-yellow",
         bgAccent: "bg-accent-yellow/5",
+        tags: ["Distributed systems", "Cloud", "Low-level"],
+        level: "GRINDING",
     },
 ];
 
@@ -68,8 +80,19 @@ export default function Interests() {
                 className="mb-12"
             >
                 <span className="section-label">// 06</span>
-                <h2 className="section-title">Pit Lane</h2>
-                <p className="text-muted text-sm mt-1">What fuels me outside of work</p>
+                <div className="flex flex-wrap items-end justify-between gap-3">
+                    <div>
+                        <h2 className="section-title">Pit Lane</h2>
+                        <p className="text-muted text-sm mt-1">What fuels me outside of work</p>
+                    </div>
+                    {/* Header stat — loadout slots */}
+                    <div className="flex items-center gap-2 font-orbitron text-[0.65rem] tracking-widest text-muted pb-1">
+                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow" />
+                        <span>LOADOUT</span>
+                        <span className="text-[var(--color-text-primary)] font-bold">{interests.length}/6</span>
+                        <span>SLOTS EQUIPPED</span>
+                    </div>
+                </div>
                 <div className="w-20 h-[2px] bg-gradient-to-r from-accent-yellow to-transparent mt-2" />
             </motion.div>
 
@@ -78,7 +101,7 @@ export default function Interests() {
                 {interests.map((interest, i) => (
                     <motion.div
                         key={i}
-                        className={`card-glow-corners group relative p-5 rounded-xl bg-card border-b-4 ${interest.accent} border border-border-subtle hover:bg-card-hover hover:border-[var(--card-accent)] transition-all duration-500 overflow-hidden cursor-default`}
+                        className={`card-glow-corners group relative p-5 rounded-xl bg-card border-b-4 ${interest.accent} border border-border-subtle hover:bg-card-hover hover:border-[var(--card-accent)] transition-all duration-500 overflow-hidden cursor-default flex flex-col`}
                         style={{ '--card-accent': `var(--color-${interest.accent.replace('border-', '')})` }}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -88,14 +111,23 @@ export default function Interests() {
                     >
                         {/* Glowing corner brackets */}
                         <div className="corner-glow"><span /><span /><span /><span /></div>
-                        {/* Accent bg glow */}
-                        {/* <div className={`absolute inset-0 ${interest.bgAccent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl`} /> */}
+
+                        {/* Slot index — pit crew tag */}
+                        <span className="absolute top-3 right-3 z-10 font-orbitron text-[0.6rem] tracking-widest text-[var(--color-text-faint)] group-hover:text-[var(--card-accent)] transition-colors duration-300 select-none">
+                            P{String(i + 1).padStart(2, "0")}
+                        </span>
 
                         {/* Content */}
-                        <div className="relative z-10">
+                        <div className="relative z-10 flex flex-col flex-1">
                             {/* Emoji + Title Row */}
                             <div className="flex items-center gap-3 mb-3">
-                                <span className="text-3xl">{interest.emoji}</span>
+                                <motion.span
+                                    className="text-3xl inline-block"
+                                    whileHover={{ rotate: [0, -12, 12, -6, 0], scale: 1.15 }}
+                                    transition={{ duration: 0.5 }}
+                                >
+                                    {interest.emoji}
+                                </motion.span>
                                 <div>
                                     <h3 className="font-bold text-[var(--color-text-primary)] text-lg group-hover:text-[var(--card-accent)] transition-colors duration-300">
                                         {interest.title}
@@ -106,14 +138,37 @@ export default function Interests() {
                                 </div>
                             </div>
 
+                            {/* Status / level badge */}
+                            <div className="flex items-center gap-2 mb-3">
+                                <span
+                                    className="font-orbitron text-[0.55rem] tracking-widest px-2 py-0.5 rounded border"
+                                    style={{
+                                        color: "var(--card-accent)",
+                                        borderColor: "color-mix(in srgb, var(--card-accent) 40%, transparent)",
+                                        backgroundColor: "color-mix(in srgb, var(--card-accent) 8%, transparent)",
+                                    }}
+                                >
+                                    {interest.level}
+                                </span>
+                            </div>
+
                             {/* Description */}
                             <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
                                 {interest.description}
                             </p>
-                        </div>
 
-                        {/* Bottom accent bar */}
-                        {/* <div className={`absolute bottom-0 left-0 right-0 h-[2px] ${interest.accent.replace('border-', 'bg-')} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} /> */}
+                            {/* Perk tags — pushed to bottom */}
+                            <div className="mt-auto pt-4 flex flex-wrap gap-1.5">
+                                {interest.tags.map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="font-mono text-[0.6rem] px-2 py-0.5 rounded-full bg-surface text-[var(--color-text-tertiary)] border border-border-subtle group-hover:border-[var(--card-accent)] transition-colors duration-300"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
                     </motion.div>
                 ))}
             </div>

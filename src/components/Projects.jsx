@@ -14,6 +14,8 @@ const projects = [
     accent: "border-accent",
     accentColor: "#00FF66",
     status: "PATENTED",
+    class: "VISION CLASS",
+    tagline: "Real-time reading co-pilot",
   },
   {
     name: "BeeSafe",
@@ -25,6 +27,8 @@ const projects = [
     accent: "border-accent-yellow",
     accentColor: "#FFB800",
     status: "PATENT FILED",
+    class: "EDGE-ML CLASS",
+    tagline: "Bioacoustic colony guardian",
   },
   {
     name: "Zen.AI",
@@ -36,6 +40,8 @@ const projects = [
     accent: "border-accent-blue",
     accentColor: "#00A3FF",
     status: "COMPLETED",
+    class: "PLATFORM CLASS",
+    tagline: "End-to-end placement engine",
   },
   {
     name: "Grounded",
@@ -47,6 +53,8 @@ const projects = [
     accent: "border-accent-red",
     accentColor: "#FF3333",
     status: "COMPLETED",
+    class: "DEV-TOOL CLASS",
+    tagline: "Tests & docs on autopilot",
   },
 ];
 
@@ -62,6 +70,8 @@ const moreProjects = [
     accent: "border-accent-blue",
     accentColor: "#00A3FF",
     status: "COMPLETED",
+    class: "WEB CLASS",
+    tagline: "Car specs, cleanly served",
   },
   {
     name: "NewsSense",
@@ -73,11 +83,16 @@ const moreProjects = [
     accent: "border-accent",
     accentColor: "#00FF66",
     status: "COMPLETED",
+    class: "RAPID-BUILD CLASS",
+    tagline: "News-grounded market reads",
   },
 ];
 
+// Build number helper — purely cosmetic spec-sheet flavor, derived from list order.
+const buildNo = (i) => `B-${String(i + 1).padStart(3, "0")}`;
+
 // Expanded project overlay component
-function ProjectOverlay({ project, onClose }) {
+function ProjectOverlay({ project, buildLabel, onClose }) {
   // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -117,19 +132,44 @@ function ProjectOverlay({ project, onClose }) {
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Top accent bar */}
-        {/* <div
+        {/* Top livery accent bar */}
+        <div
           className="h-1 w-full rounded-t-2xl"
-          style={{ background: project.accentColor }}
-        /> */}
+          style={{
+            background: `linear-gradient(90deg, ${project.accentColor}, ${project.accentColor}30 60%, transparent)`,
+          }}
+        />
 
         {/* Scanline overlay */}
         <div className="absolute inset-0 scanline pointer-events-none rounded-2xl" />
+
+        {/* Spec-sheet telemetry strip */}
+        <div className="relative flex items-center justify-between gap-3 px-8 md:px-10 pt-5 pb-4 border-b border-border-subtle">
+          <div className="flex items-center gap-3 min-w-0">
+            <span
+              className="text-[0.6rem] font-orbitron tracking-[0.25em] px-2 py-1 rounded-md border shrink-0"
+              style={{
+                color: project.accentColor,
+                borderColor: project.accentColor + "40",
+                background: project.accentColor + "10",
+              }}
+            >
+              {buildLabel}
+            </span>
+            <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted truncate">
+              SPEC SHEET
+            </span>
+          </div>
+          <span className="hidden sm:inline text-[0.55rem] font-orbitron tracking-[0.3em] text-[var(--color-text-tertiary)] truncate">
+            {project.class}
+          </span>
+        </div>
 
         <div className="relative p-8 md:p-10">
           {/* Close button */}
           <button
             onClick={onClose}
+            aria-label="Close"
             className="absolute top-4 right-4 z-10 w-8 h-8 rounded-lg bg-surface border border-border-subtle flex items-center justify-center text-muted hover:text-[var(--color-text-primary)] hover:border-accent/30 transition-all duration-300"
           >
             ✕
@@ -163,6 +203,10 @@ function ProjectOverlay({ project, onClose }) {
                   {project.name}
                 </h2>
 
+                <p className="text-xs text-[var(--color-text-tertiary)] tracking-wide italic">
+                  {project.tagline}
+                </p>
+
                 <div
                   className="w-16 h-[2px] mt-4"
                   style={{
@@ -171,8 +215,8 @@ function ProjectOverlay({ project, onClose }) {
                 />
               </div>
 
-              {/* Stats bar */}
-              <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-surface border border-border-subtle mb-6">
+              {/* Stats bar — machine readout */}
+              <div className="grid grid-cols-3 gap-3 p-4 rounded-xl bg-surface border border-border-subtle mb-4">
                 <div className="text-center">
                   <span
                     className="text-lg font-bold font-orbitron"
@@ -181,10 +225,10 @@ function ProjectOverlay({ project, onClose }) {
                     {project.tech.length}
                   </span>
                   <p className="text-[0.55rem] text-muted tracking-widest mt-1">
-                    TECH
+                    SPECS
                   </p>
                 </div>
-                <div className="text-center">
+                <div className="text-center border-x border-border-subtle">
                   <span
                     className="text-lg font-bold font-orbitron"
                     style={{ color: project.accentColor }}
@@ -195,6 +239,31 @@ function ProjectOverlay({ project, onClose }) {
                     STATUS
                   </p>
                 </div>
+                <div className="text-center">
+                  <span
+                    className="text-lg font-bold font-orbitron"
+                    style={{ color: project.accentColor }}
+                  >
+                    {buildLabel.replace("B-", "")}
+                  </span>
+                  <p className="text-[0.55rem] text-muted tracking-widest mt-1">
+                    BUILD
+                  </p>
+                </div>
+              </div>
+
+              {/* Status entry line */}
+              <div className="flex items-center gap-2 mb-6 px-1">
+                <span
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ background: project.accentColor }}
+                />
+                <span
+                  className="text-[0.55rem] font-orbitron tracking-[0.2em]"
+                  style={{ color: project.accentColor }}
+                >
+                  {project.status}
+                </span>
               </div>
 
               {/* Action buttons Desktop */}
@@ -298,8 +367,8 @@ function ProjectOverlay({ project, onClose }) {
   );
 }
 
-// Project card component
-function ProjectCard({ project, index, onClick }) {
+// Project card component — a build in the garage bay
+function ProjectCard({ project, index, buildLabel, onClick }) {
   return (
     <motion.div
       className={`card-glow-corners group relative p-6 rounded-xl bg-card border-b-4 ${project.accent} border border-border-subtle hover:bg-card-hover hover:border-[var(--card-accent)] transition-all duration-500 overflow-hidden cursor-pointer`}
@@ -314,17 +383,53 @@ function ProjectCard({ project, index, onClick }) {
       {/* Glowing corner brackets */}
       <div className="corner-glow"><span /><span /><span /><span /></div>
 
-      {/* Category */}
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
-          {project.category}
+      {/* Livery side stripe */}
+      <div
+        className="absolute left-0 top-0 h-full w-[3px] opacity-70 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: `linear-gradient(180deg, ${project.accentColor}, transparent)`,
+        }}
+      />
+
+      {/* Header row: build number + category + status badge */}
+      <div className="flex items-center justify-between gap-3 mb-3">
+        <div className="flex items-center gap-2 min-w-0">
+          <span
+            className="text-[0.55rem] font-orbitron tracking-[0.2em] tabular-nums"
+            style={{ color: project.accentColor }}
+          >
+            {buildLabel}
+          </span>
+          <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted truncate">
+            {project.category}
+          </span>
+        </div>
+        {/* Race-entry status badge */}
+        <span
+          className="shrink-0 inline-flex items-center gap-1.5 text-[0.5rem] font-orbitron tracking-[0.15em] px-2 py-1 rounded-full border"
+          style={{
+            color: project.accentColor,
+            borderColor: project.accentColor + "33",
+            background: project.accentColor + "10",
+          }}
+        >
+          <span
+            className="w-1 h-1 rounded-full"
+            style={{ background: project.accentColor }}
+          />
+          {project.status}
         </span>
       </div>
 
       {/* Project Name */}
-      <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mt-1 mb-3 group-hover:text-[var(--card-accent)] transition-colors duration-300 font-orbitron">
+      <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mt-1 mb-1 group-hover:text-[var(--card-accent)] transition-colors duration-300 font-orbitron">
         {project.name}
       </h3>
+
+      {/* Class / tagline readout */}
+      <p className="text-[0.6rem] font-orbitron tracking-[0.2em] text-[var(--color-text-tertiary)] mb-3">
+        {project.class}
+      </p>
 
       {/* Divider */}
       <div className="w-12 h-[1px] bg-border-subtle mb-3" />
@@ -334,7 +439,7 @@ function ProjectCard({ project, index, onClick }) {
         {project.desc}
       </p>
 
-      {/* Tech Stack + More Details */}
+      {/* Tech Stack + Inspect */}
       <div className="flex items-end justify-between gap-4">
         <div className="flex flex-wrap gap-2">
           {project.tech.slice(0, 3).map((t) => (
@@ -352,7 +457,7 @@ function ProjectCard({ project, index, onClick }) {
           )}
         </div>
 
-        {/* More Details button */}
+        {/* Inspect build button (keeps MORE DETAILS intent) */}
         <span
           className="shrink-0 text-xs font-orbitron tracking-wider flex items-center gap-1.5 px-3 py-1.5 rounded-lg border opacity-60 group-hover:opacity-100 transition-all duration-300"
           style={{
@@ -361,7 +466,7 @@ function ProjectCard({ project, index, onClick }) {
             background: project.accentColor + '10'
           }}
         >
-          MORE DETAILS ↗
+          INSPECT BUILD ↗
         </span>
       </div>
     </motion.div>
@@ -372,7 +477,27 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showMore, setShowMore] = useState(false);
 
-  const allProjects = showMore ? [...projects, ...moreProjects] : projects;
+  // Stable build number keyed by name so it never shifts when expanding.
+  const fullRoster = [...projects, ...moreProjects];
+  const buildLabelFor = (project) =>
+    buildNo(fullRoster.findIndex((p) => p.name === project.name));
+
+  const allProjects = showMore ? fullRoster : projects;
+
+  // Garage header telemetry — derived from the roster, no hardcoded facts.
+  const totalBuilds = fullRoster.length;
+  const patentCount = fullRoster.filter((p) =>
+    p.status.includes("PATENT")
+  ).length;
+  const shippedCount = fullRoster.filter(
+    (p) => p.status === "COMPLETED"
+  ).length;
+
+  const garageStats = [
+    { label: "BUILDS", value: String(totalBuilds).padStart(2, "0") },
+    { label: "PATENTS", value: String(patentCount).padStart(2, "0") },
+    { label: "SHIPPED", value: String(shippedCount).padStart(2, "0") },
+  ];
 
   return (
     <section
@@ -385,7 +510,7 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5 }}
-        className="mb-12"
+        className="mb-10"
       >
         <span className="section-label">// 05</span>
         <div className="flex items-center justify-between flex-wrap gap-4">
@@ -417,6 +542,34 @@ export default function Projects() {
         <div className="w-20 h-[2px] bg-gradient-to-r from-accent to-transparent mt-3" />
       </motion.div>
 
+      {/* Garage telemetry strip */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="mb-10 flex flex-wrap items-stretch gap-px rounded-xl overflow-hidden border border-border-subtle bg-border-subtle"
+      >
+        {garageStats.map((stat) => (
+          <div
+            key={stat.label}
+            className="flex-1 min-w-[5.5rem] bg-card px-4 py-3 flex flex-col items-center justify-center"
+          >
+            <span className="text-xl font-bold font-orbitron text-accent tabular-nums leading-none">
+              {stat.value}
+            </span>
+            <span className="text-[0.5rem] font-orbitron tracking-[0.25em] text-muted mt-1.5">
+              {stat.label}
+            </span>
+          </div>
+        ))}
+        <div className="hidden sm:flex flex-[2] min-w-[10rem] bg-card px-4 py-3 items-center justify-center">
+          <span className="text-[0.55rem] font-orbitron tracking-[0.3em] text-[var(--color-text-tertiary)]">
+            GARAGE // SELECT A BUILD
+          </span>
+        </div>
+      </motion.div>
+
       {/* Project Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {allProjects.map((project, i) => (
@@ -424,6 +577,7 @@ export default function Projects() {
             key={project.name}
             project={project}
             index={i}
+            buildLabel={buildLabelFor(project)}
             onClick={() => setSelectedProject(project)}
           />
         ))}
@@ -441,7 +595,7 @@ export default function Projects() {
             onClick={() => setShowMore(true)}
             className="text-[0.65rem] font-orbitron tracking-widest text-muted hover:text-accent transition-colors duration-300"
           >
-            + {moreProjects.length} MORE PROJECTS IN GARAGE
+            + {moreProjects.length} MORE BUILDS IN THE BAY
           </button>
         </motion.div>
       )}
@@ -451,6 +605,7 @@ export default function Projects() {
         {selectedProject && (
           <ProjectOverlay
             project={selectedProject}
+            buildLabel={buildLabelFor(selectedProject)}
             onClose={() => setSelectedProject(null)}
           />
         )}

@@ -8,6 +8,8 @@ const achievements = [
         type: "GRANT",
         icon: "💰",
         title: "Government Research Grant",
+        rarity: "LEGENDARY",
+        points: 1000,
         description:
             "Awarded a ₹10L (≈ €11,000) research grant by the Indian Government for our AI-powered apiculture conservation project.",
         longDesc:
@@ -23,6 +25,8 @@ const achievements = [
         type: "PATENT",
         icon: "🏆",
         title: "Bee Threat Detection Patent",
+        rarity: "EPIC",
+        points: 750,
         description:
             "Patent filed for an AI-powered system that protects beehives from predators using computer vision and audio ML (App No. 202441071459 A).",
         longDesc:
@@ -38,6 +42,8 @@ const achievements = [
         type: "PATENT",
         icon: "🏆",
         title: "WordLens Reading System Patent",
+        rarity: "EPIC",
+        points: 750,
         description:
             "Patent published for an AI-assisted reading aid using OCR and context-aware NLP pipelines (App No. 202561122407 A).",
         longDesc:
@@ -53,6 +59,8 @@ const achievements = [
         type: "RESEARCH",
         icon: "📄",
         title: "Apiculture Health Monitoring System",
+        rarity: "RARE",
+        points: 500,
         description:
             "Research paper published at IEEE 2026 detailing our machine learning based apiculture health monitoring and threat detection system.",
         longDesc:
@@ -68,6 +76,8 @@ const achievements = [
         type: "RESEARCH",
         icon: "📄",
         title: "Virtual Boundary Detection for Safety",
+        rarity: "RARE",
+        points: 500,
         description:
             "Research paper presented and published at ICICC 2025 detailing a machine learning model for virtual safety boundary enforcement.",
         longDesc:
@@ -80,6 +90,15 @@ const achievements = [
         link: "#",
     },
 ];
+
+// Summary stats for the trophy cabinet header (counts derived from data)
+const cabinetStats = [
+    { label: "GRANTS", count: achievements.filter((a) => a.type === "GRANT").length, color: "#00FF66" },
+    { label: "PATENTS", count: achievements.filter((a) => a.type === "PATENT").length, color: "#FFB800" },
+    { label: "PAPERS", count: achievements.filter((a) => a.type === "RESEARCH").length, color: "#00A3FF" },
+];
+
+const totalPoints = achievements.reduce((sum, a) => sum + (a.points || 0), 0);
 
 // Expanded achievement overlay component
 function AchievementOverlay({ achievement, onClose }) {
@@ -139,6 +158,21 @@ function AchievementOverlay({ achievement, onClose }) {
                         <div className="md:col-span-4 flex flex-col">
                             {/* Header */}
                             <div className="mb-6">
+                                {/* Achievement unlocked banner */}
+                                <div
+                                    className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-md border animate-pulse-glow"
+                                    style={{
+                                        color: achievement.accentColor,
+                                        borderColor: achievement.accentColor + "40",
+                                        background: achievement.accentColor + "12",
+                                    }}
+                                >
+                                    <span className="text-xs">🔓</span>
+                                    <span className="text-[0.55rem] font-orbitron tracking-[0.25em]">
+                                        ACHIEVEMENT UNLOCKED
+                                    </span>
+                                </div>
+
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
                                     <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
                                         {achievement.type}
@@ -153,6 +187,18 @@ function AchievementOverlay({ achievement, onClose }) {
                                     >
                                         {achievement.status}
                                     </span>
+                                    {achievement.rarity && (
+                                        <span
+                                            className="text-[0.55rem] font-orbitron tracking-wider px-2 py-0.5 rounded-full border"
+                                            style={{
+                                                color: achievement.accentColor,
+                                                borderColor: achievement.accentColor + "40",
+                                                background: achievement.accentColor + "10",
+                                            }}
+                                        >
+                                            ◆ {achievement.rarity}
+                                        </span>
+                                    )}
                                 </div>
 
                                 <h2
@@ -169,6 +215,19 @@ function AchievementOverlay({ achievement, onClose }) {
                                         background: `linear-gradient(90deg, ${achievement.accentColor}, transparent)`,
                                     }}
                                 />
+
+                                {/* XP reward */}
+                                {achievement.points && (
+                                    <div className="flex items-center gap-2 mt-5">
+                                        <span className="text-sm">🏅</span>
+                                        <span
+                                            className="font-orbitron text-sm font-bold tracking-wider"
+                                            style={{ color: achievement.accentColor }}
+                                        >
+                                            +{achievement.points.toLocaleString()} XP
+                                        </span>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Action buttons Desktop */}
@@ -294,29 +353,69 @@ function AchievementCard({ achievement, index, onClick }) {
             {/* Glowing corner brackets */}
             <div className="corner-glow"><span /><span /><span /><span /></div>
 
-            {/* Type label */}
-            <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">{achievement.icon}</span>
-                <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
-                    {achievement.type}
+            {/* Rarity glaze — subtle radial wash in the accent color */}
+            <div
+                className="absolute inset-0 pointer-events-none opacity-50"
+                style={{
+                    background: `radial-gradient(120% 90% at 100% 0%, ${achievement.accentColor}12, transparent 55%)`,
+                }}
+            />
+
+            {/* Shimmer sweep on hover (badge shine) */}
+            <div
+                className="absolute -inset-y-2 -left-1/2 w-1/2 pointer-events-none opacity-0 group-hover:opacity-100 group-hover:translate-x-[300%] transition-all duration-[900ms] ease-out"
+                style={{
+                    background: `linear-gradient(105deg, transparent, ${achievement.accentColor}26, transparent)`,
+                }}
+            />
+
+            {/* Top row: icon + type label / rarity badge */}
+            <div className="relative flex items-start justify-between gap-3 mb-3">
+                <div className="flex items-center gap-3">
+                    {/* Medallion */}
+                    <span
+                        className="grid place-items-center w-11 h-11 rounded-full border text-2xl shrink-0 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[8deg]"
+                        style={{
+                            borderColor: achievement.accentColor + "50",
+                            background: `radial-gradient(circle at 30% 25%, ${achievement.accentColor}22, ${achievement.accentColor}08)`,
+                            boxShadow: `inset 0 0 12px ${achievement.accentColor}18`,
+                        }}
+                    >
+                        {achievement.icon}
+                    </span>
+                    <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
+                        {achievement.type}
+                    </span>
+                </div>
+
+                {/* Rarity tier chip */}
+                <span
+                    className="shrink-0 text-[0.55rem] font-orbitron tracking-[0.15em] px-2 py-1 rounded-md border self-start"
+                    style={{
+                        color: achievement.accentColor,
+                        borderColor: achievement.accentColor + "40",
+                        background: achievement.accentColor + "12",
+                    }}
+                >
+                    ◆ {achievement.rarity}
                 </span>
             </div>
 
             {/* Title */}
-            <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2 transition-colors duration-300 group-hover:text-[var(--card-accent)] font-orbitron">
+            <h3 className="relative text-lg font-bold text-[var(--color-text-primary)] mb-2 transition-colors duration-300 group-hover:text-[var(--card-accent)] font-orbitron">
                 {achievement.title}
             </h3>
 
             {/* Divider */}
-            <div className="w-12 h-[1px] bg-border-subtle mb-3" />
+            <div className="relative w-12 h-[1px] bg-border-subtle mb-3 group-hover:w-20 group-hover:bg-[var(--card-accent)] transition-all duration-500" />
 
             {/* Description */}
-            <p className="text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
+            <p className="relative text-sm text-[var(--color-text-muted)] leading-relaxed mb-4">
                 {achievement.description}
             </p>
 
             {/* Tags + More Details */}
-            <div className="flex items-end justify-between gap-4">
+            <div className="relative flex items-end justify-between gap-4">
                 {achievement.tags && (
                     <div className="flex flex-wrap gap-2">
                         {achievement.tags.slice(0, 3).map((t) => (
@@ -335,7 +434,7 @@ function AchievementCard({ achievement, index, onClick }) {
                     </div>
                 )}
 
-                {/* More Details button */}
+                {/* Inspect button */}
                 <span
                     className="shrink-0 text-xs font-orbitron tracking-wider flex items-center gap-1.5 px-3 py-1.5 rounded-lg border opacity-60 group-hover:opacity-100 transition-all duration-300"
                     style={{
@@ -344,7 +443,7 @@ function AchievementCard({ achievement, index, onClick }) {
                         background: achievement.accentColor + '10'
                     }}
                 >
-                    MORE DETAILS ↗
+                    INSPECT ↗
                 </span>
             </div>
         </motion.div>
@@ -370,6 +469,52 @@ export default function Achievements() {
                 <span className="section-label">// 04</span>
                 <h2 className="section-title">Trophy Cabinet</h2>
                 <div className="w-20 h-[2px] bg-gradient-to-r from-accent-yellow to-transparent mt-2" />
+            </motion.div>
+
+            {/* Cabinet stats bar — game-style scoreboard */}
+            <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mb-10 flex flex-wrap items-stretch gap-3"
+            >
+                {cabinetStats.map((stat) => (
+                    <div
+                        key={stat.label}
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl bg-card border border-border-subtle"
+                        style={{ boxShadow: `inset 0 0 0 1px ${stat.color}1a` }}
+                    >
+                        <span
+                            className="font-orbitron text-2xl font-bold leading-none"
+                            style={{ color: stat.color }}
+                        >
+                            {String(stat.count).padStart(2, "0")}
+                        </span>
+                        <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
+                            {stat.label}
+                        </span>
+                    </div>
+                ))}
+
+                {/* Total XP — separated as the headline score */}
+                <div
+                    className="ml-auto flex items-center gap-3 px-4 py-3 rounded-xl border"
+                    style={{
+                        borderColor: "#FFB80040",
+                        background: "linear-gradient(135deg, rgba(255,184,0,0.12), transparent)",
+                    }}
+                >
+                    <span className="text-base leading-none">🏅</span>
+                    <div className="flex flex-col leading-tight">
+                        <span className="text-[0.55rem] font-orbitron tracking-[0.2em] text-muted">
+                            TOTAL SCORE
+                        </span>
+                        <span className="font-orbitron text-lg font-bold text-accent-yellow leading-none">
+                            {totalPoints.toLocaleString()} XP
+                        </span>
+                    </div>
+                </div>
             </motion.div>
 
             {/* Achievement Grid */}

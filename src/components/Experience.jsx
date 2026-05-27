@@ -6,6 +6,8 @@ import { AnimatePresence } from "motion/react";
 const experiences = [
   {
     season: 3,
+    position: "P1",
+    circuit: "CURRENT GRID",
     company: "BeyondRisX",
     role: "Software Engineering Intern",
     period: "Feb 2026 — Present",
@@ -27,6 +29,8 @@ const experiences = [
   },
   {
     season: 2,
+    position: "P2",
+    circuit: "PODIUM FINISH",
     company: "GeoIQ",
     role: "Software Developer Intern - Backend",
     period: "Jul 2025 — Jan 2026",
@@ -48,6 +52,8 @@ const experiences = [
   },
   {
     season: 1,
+    position: "P3",
+    circuit: "PODIUM FINISH",
     company: "RoboDynamics",
     role: "Robotics Developer Intern",
     period: "Mar 2023 — Aug 2023",
@@ -124,24 +130,50 @@ function ExperienceOverlay({ experience, onClose }) {
             ✕
           </button>
 
+          {/* Telemetry header strip */}
+          <div className="relative mb-8 -mt-2 pr-10 flex items-center gap-3">
+            <span className="flex items-center gap-2 text-[0.55rem] font-orbitron tracking-[0.25em] text-muted">
+              <span
+                className="w-1.5 h-1.5 rounded-full animate-pulse"
+                style={{ background: experience.accentColor }}
+              />
+              RACE REPORT // TELEMETRY
+            </span>
+            <span className="flex-1 h-px bg-border-subtle" />
+            <span className="text-[0.55rem] font-orbitron tracking-[0.2em] text-muted">
+              SECTORS {experience.accomplishments?.length || 0}
+            </span>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             {/* Left Column: Header & Stats */}
             <div className="md:col-span-4 flex flex-col">
               <div className="mb-6">
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="text-[0.6rem] font-orbitron tracking-[0.2em] text-muted">
-                    SEASON {String(experience.season).padStart(2, "0")}
-                  </span>
+                {/* Position banner */}
+                <div
+                  className="relative flex items-center gap-3 p-4 rounded-xl border mb-4 overflow-hidden"
+                  style={{
+                    borderColor: experience.accentColor + "30",
+                    background: `linear-gradient(110deg, ${experience.accentColor}14, transparent)`,
+                  }}
+                >
                   <span
-                    className="text-[0.55rem] font-orbitron tracking-wider px-2 py-0.5 rounded-full border"
-                    style={{
-                      color: experience.accentColor,
-                      borderColor: experience.accentColor + "40",
-                      background: experience.accentColor + "10",
-                    }}
+                    className="text-4xl font-black font-orbitron leading-none"
+                    style={{ color: experience.accentColor }}
                   >
-                    {experience.status}
+                    {experience.position}
                   </span>
+                  <div className="flex flex-col">
+                    <span className="text-[0.55rem] font-orbitron tracking-[0.25em] text-muted">
+                      {experience.circuit}
+                    </span>
+                    <span
+                      className="text-[0.6rem] font-orbitron tracking-wider mt-0.5"
+                      style={{ color: experience.accentColor }}
+                    >
+                      {experience.status}
+                    </span>
+                  </div>
                 </div>
 
                 <h2
@@ -162,41 +194,54 @@ function ExperienceOverlay({ experience, onClose }) {
                 />
               </div>
 
-              {/* Stats Card */}
-              <div className="grid grid-cols-2 gap-3 p-4 rounded-xl bg-surface border border-border-subtle mb-6">
-                <div className="text-center">
-                  <span
-                    className="text-lg font-bold font-orbitron"
-                    style={{ color: experience.accentColor }}
+              {/* Telemetry stat grid */}
+              <div className="grid grid-cols-3 gap-2 mb-6">
+                {[
+                  { v: `S${String(experience.season).padStart(2, "0")}`, l: "SEASON" },
+                  { v: experience.position, l: "FINISH" },
+                  { v: `${experience.durationPercent}%`, l: "RACE" },
+                ].map((s) => (
+                  <div
+                    key={s.l}
+                    className="text-center py-3 rounded-lg bg-surface border border-border-subtle"
                   >
-                    S{String(experience.season).padStart(2, "0")}
-                  </span>
-                  <p className="text-[0.55rem] text-muted tracking-widest mt-1">
-                    SEASON
-                  </p>
-                </div>
-                <div className="text-center">
-                  <span
-                    className="text-lg font-bold font-orbitron"
-                    style={{ color: experience.accentColor }}
-                  >
-                    {experience.duration}
-                  </span>
-                  <p className="text-[0.55rem] text-muted tracking-widest mt-1">
-                    TENURE
-                  </p>
-                </div>
+                    <span
+                      className="block text-base font-bold font-orbitron"
+                      style={{ color: experience.accentColor }}
+                    >
+                      {s.v}
+                    </span>
+                    <p className="text-[0.5rem] text-muted tracking-widest mt-1">
+                      {s.l}
+                    </p>
+                  </div>
+                ))}
               </div>
 
               {/* Tenure Progress */}
               <div className="p-4 rounded-xl bg-surface border border-border-subtle mb-6">
-                <h3 className="text-[0.6rem] font-orbitron tracking-widest text-muted mb-3">
-                  RACE PROGRESS
-                </h3>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-[0.6rem] font-orbitron tracking-widest text-muted">
+                    RACE PROGRESS
+                  </h3>
+                  <span
+                    className="text-[0.6rem] font-orbitron tracking-wider"
+                    style={{ color: experience.accentColor }}
+                  >
+                    {experience.duration}
+                  </span>
+                </div>
                 <div className="relative w-full h-2.5 bg-card-hover rounded-full overflow-hidden">
+                  {/* Sector tick marks */}
+                  <div className="absolute inset-0 flex justify-between px-[33%] pointer-events-none z-10">
+                    <span className="w-px h-full bg-border-subtle opacity-60" />
+                    <span className="w-px h-full bg-border-subtle opacity-60" />
+                  </div>
                   <motion.div
-                    className="h-full rounded-full"
-                    style={{ background: experience.accentColor }}
+                    className="h-full rounded-full relative"
+                    style={{
+                      background: `linear-gradient(90deg, ${experience.accentColor}80, ${experience.accentColor})`,
+                    }}
                     initial={{ width: 0 }}
                     animate={{ width: `${experience.durationPercent}%` }}
                     transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
@@ -242,32 +287,52 @@ function ExperienceOverlay({ experience, onClose }) {
                 </div>
               </div>
 
-              {/* Key Accomplishments */}
+              {/* Key Accomplishments — Sector breakdown */}
               {experience.accomplishments && (
                 <div className="mb-8">
-                  <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted mb-4">
-                    KEY WINS
-                  </h3>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-[0.65rem] font-orbitron tracking-widest text-muted">
+                      KEY WINS // FASTEST LAPS
+                    </h3>
+                    <span
+                      className="text-[0.55rem] font-orbitron tracking-wider px-2 py-0.5 rounded border"
+                      style={{
+                        color: experience.accentColor,
+                        borderColor: experience.accentColor + "30",
+                        background: experience.accentColor + "0A",
+                      }}
+                    >
+                      {experience.accomplishments.length} SECTORS
+                    </span>
+                  </div>
                   <div className="space-y-3">
                     {experience.accomplishments.map((item, i) => (
-                      <div
+                      <motion.div
                         key={i}
-                        className="flex items-start gap-3 p-3 rounded-lg bg-surface border border-border-subtle"
+                        className="group/lap relative flex items-start gap-3 p-3 pl-4 rounded-lg bg-surface border border-border-subtle overflow-hidden"
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 + i * 0.08 }}
                       >
+                        {/* Accent rail */}
                         <span
-                          className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[0.55rem] font-orbitron font-bold shrink-0"
+                          className="absolute left-0 top-0 bottom-0 w-0.5"
+                          style={{ background: experience.accentColor }}
+                        />
+                        <span
+                          className="mt-0.5 px-1.5 h-5 rounded flex items-center justify-center text-[0.5rem] font-orbitron font-bold tracking-wider shrink-0"
                           style={{
                             color: experience.accentColor,
                             background: experience.accentColor + "15",
                             border: `1px solid ${experience.accentColor}30`,
                           }}
                         >
-                          {i + 1}
+                          S{i + 1}
                         </span>
                         <span className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
                           {item}
                         </span>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
@@ -319,14 +384,14 @@ function ExperienceCard({ experience, index, isLeft, onClick }) {
         isLeft ? "md:flex-row" : "md:flex-row-reverse"
       } flex-row`}
     >
-      {/* Timeline connector — Desktop */}
-      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 z-10">
+      {/* Timeline connector — Desktop (position marker) */}
+      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 z-10 flex-col items-center">
         <motion.div
-          className="w-4 h-4 rounded-full border-2 timeline-node"
+          className="w-8 h-8 rounded-full border-2 timeline-node flex items-center justify-center backdrop-blur-sm"
           style={{
             borderColor: experience.accentColor,
-            background: experience.accentColor + "20",
-            boxShadow: `0 0 12px ${experience.accentColor}40`,
+            background: experience.accentColor + "18",
+            boxShadow: `0 0 14px ${experience.accentColor}50`,
           }}
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
@@ -337,17 +402,24 @@ function ExperienceCard({ experience, index, isLeft, onClick }) {
             damping: 20,
             delay: index * 0.15,
           }}
-        />
+        >
+          <span
+            className="text-[0.6rem] font-orbitron font-bold leading-none"
+            style={{ color: experience.accentColor }}
+          >
+            {experience.position}
+          </span>
+        </motion.div>
       </div>
 
-      {/* Timeline connector — Mobile */}
-      <div className="flex md:hidden absolute left-4 z-10">
+      {/* Timeline connector — Mobile (position marker) */}
+      <div className="flex md:hidden absolute left-[0.3rem] z-10">
         <motion.div
-          className="w-3.5 h-3.5 rounded-full border-2 timeline-node"
+          className="w-7 h-7 rounded-full border-2 timeline-node flex items-center justify-center backdrop-blur-sm"
           style={{
             borderColor: experience.accentColor,
-            background: experience.accentColor + "20",
-            boxShadow: `0 0 10px ${experience.accentColor}40`,
+            background: experience.accentColor + "18",
+            boxShadow: `0 0 10px ${experience.accentColor}50`,
           }}
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
@@ -358,7 +430,14 @@ function ExperienceCard({ experience, index, isLeft, onClick }) {
             damping: 20,
             delay: index * 0.15,
           }}
-        />
+        >
+          <span
+            className="text-[0.5rem] font-orbitron font-bold leading-none"
+            style={{ color: experience.accentColor }}
+          >
+            {experience.position}
+          </span>
+        </motion.div>
       </div>
 
       {/* Spacer for opposite side — Desktop */}
@@ -391,7 +470,17 @@ function ExperienceCard({ experience, index, isLeft, onClick }) {
 
         {/* Season + Period header */}
         <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <span
+              className="text-[0.65rem] font-orbitron font-bold tracking-wider px-1.5 py-0.5 rounded"
+              style={{
+                color: experience.accentColor,
+                background: experience.accentColor + "18",
+                border: `1px solid ${experience.accentColor}30`,
+              }}
+            >
+              {experience.position}
+            </span>
             <span
               className="text-[0.6rem] font-orbitron tracking-[0.2em] px-2 py-0.5 rounded border"
               style={{
@@ -413,13 +502,31 @@ function ExperienceCard({ experience, index, isLeft, onClick }) {
           {experience.company}
         </h3>
 
-        {/* Role */}
-        <p
-          className="text-sm mb-3 font-orbitron tracking-wider"
-          style={{ color: experience.accentColor + "CC" }}
-        >
-          {experience.role}
-        </p>
+        {/* Role + status */}
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <p
+            className="text-sm font-orbitron tracking-wider"
+            style={{ color: experience.accentColor + "CC" }}
+          >
+            {experience.role}
+          </p>
+          <span
+            className="shrink-0 flex items-center gap-1 text-[0.5rem] font-orbitron tracking-wider px-1.5 py-0.5 rounded-full border"
+            style={{
+              color: experience.accentColor,
+              borderColor: experience.accentColor + "30",
+              background: experience.accentColor + "0A",
+            }}
+          >
+            {experience.status === "ACTIVE" && (
+              <span
+                className="w-1.5 h-1.5 rounded-full animate-pulse"
+                style={{ background: experience.accentColor }}
+              />
+            )}
+            {experience.status}
+          </span>
+        </div>
 
         {/* Divider */}
         <div className="w-12 h-[1px] bg-border-subtle mb-3" />
@@ -429,10 +536,14 @@ function ExperienceCard({ experience, index, isLeft, onClick }) {
           {experience.description}
         </p>
 
-        {/* Tenure Progress Bar */}
+        {/* Tenure Progress Bar — lap telemetry */}
         <div className="mb-4">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[0.55rem] font-orbitron tracking-widest text-muted">
+            <span className="flex items-center gap-1.5 text-[0.55rem] font-orbitron tracking-widest text-muted">
+              <span
+                className="w-1 h-1 rounded-full"
+                style={{ background: experience.accentColor }}
+              />
               TENURE
             </span>
             <span
@@ -443,6 +554,11 @@ function ExperienceCard({ experience, index, isLeft, onClick }) {
             </span>
           </div>
           <div className="relative w-full h-1.5 bg-surface rounded-full overflow-hidden">
+            {/* Sector ticks */}
+            <div className="absolute inset-0 flex justify-between px-[33%] pointer-events-none z-10">
+              <span className="w-px h-full bg-border-subtle opacity-70" />
+              <span className="w-px h-full bg-border-subtle opacity-70" />
+            </div>
             <motion.div
               className="h-full rounded-full"
               style={{
@@ -482,7 +598,7 @@ function ExperienceCard({ experience, index, isLeft, onClick }) {
               background: experience.accentColor + "10",
             }}
           >
-            MORE DETAILS ↗
+            RACE REPORT ↗
           </span>
         </div>
       </motion.div>
@@ -519,21 +635,39 @@ export default function Experience() {
             </p>
           </div>
 
-          {/* Seasons Counter */}
+          {/* Championship HUD */}
           <motion.div
-            className="flex items-center gap-3 px-4 py-2 rounded-lg border border-border-subtle bg-card"
+            className="flex items-stretch divide-x divide-border-subtle rounded-lg border border-border-subtle bg-card overflow-hidden"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <span className="text-[0.6rem] font-orbitron tracking-widest text-muted">
-              SEASONS COMPLETED
-            </span>
-            <span className="text-accent font-orbitron font-bold text-lg">
-              {totalSeasons}/{totalSeasons}
-            </span>
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <div className="flex flex-col px-4 py-2">
+              <span className="text-[0.55rem] font-orbitron tracking-widest text-muted">
+                SEASONS RUN
+              </span>
+              <span className="flex items-center gap-2 text-accent font-orbitron font-bold text-lg leading-none mt-0.5">
+                {totalSeasons}
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              </span>
+            </div>
+            <div className="flex flex-col px-4 py-2">
+              <span className="text-[0.55rem] font-orbitron tracking-widest text-muted">
+                PODIUMS
+              </span>
+              <span className="text-accent font-orbitron font-bold text-lg leading-none mt-0.5">
+                {totalSeasons}
+              </span>
+            </div>
+            <div className="flex flex-col px-4 py-2">
+              <span className="text-[0.55rem] font-orbitron tracking-widest text-muted">
+                BEST FINISH
+              </span>
+              <span className="text-accent font-orbitron font-bold text-lg leading-none mt-0.5">
+                P1
+              </span>
+            </div>
           </motion.div>
         </div>
         <div className="w-20 h-[2px] bg-gradient-to-r from-accent to-transparent mt-3" />
@@ -549,12 +683,15 @@ export default function Experience() {
 
         {/* Start flag */}
         <motion.div
-          className="hidden md:flex absolute left-1/2 -translate-x-1/2 -top-2 z-20 items-center justify-center"
+          className="hidden md:flex absolute left-1/2 -translate-x-1/2 -top-6 z-20 flex-col items-center gap-1"
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
+          <span className="text-[0.5rem] font-orbitron tracking-[0.25em] text-accent whitespace-nowrap">
+            LIGHTS OUT
+          </span>
           <div className="w-8 h-8 rounded-full bg-card border-2 border-accent flex items-center justify-center text-sm shadow-[0_0_15px_rgba(0,255,102,0.3)]">
             🏁
           </div>
@@ -588,7 +725,7 @@ export default function Experience() {
 
         {/* Finish flag */}
         <motion.div
-          className="hidden md:flex absolute left-1/2 -translate-x-1/2 -bottom-2 z-20 items-center justify-center"
+          className="hidden md:flex absolute left-1/2 -translate-x-1/2 -bottom-6 z-20 flex-col items-center gap-1"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -597,6 +734,9 @@ export default function Experience() {
           <div className="w-8 h-8 rounded-full bg-card border-2 border-accent-red flex items-center justify-center text-sm shadow-[0_0_15px_rgba(255,51,51,0.3)]">
             🏆
           </div>
+          <span className="text-[0.5rem] font-orbitron tracking-[0.25em] text-accent-red whitespace-nowrap">
+            CHEQUERED
+          </span>
         </motion.div>
 
         {/* Mobile finish flag */}
